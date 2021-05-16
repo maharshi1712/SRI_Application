@@ -34,6 +34,9 @@
   .highlight-phone .intro {
     max-width: none;
   }
+  .highlight-phone .intro .btn {
+        margin-bottom: 50px;
+   }
 }
 
 .highlight-phone .intro p {
