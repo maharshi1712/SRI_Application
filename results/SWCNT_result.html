@@ -45,11 +45,16 @@
         
         .mycanva {
             grid-area: canvas;
-            margin-top: 250px;
+            margin-top: 100px;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .equation-head{
             grid-area:equation;
             height:100px;
+            margin-top:50px;
         }
         .equation{
             display: flex;
@@ -68,6 +73,11 @@
         }
         .capcOfSWCNT{
             grid-area:capc;
+        }   
+        @media only screen and (max-width: 600px) {
+            .contain{
+                grid-template-areas: "head" "table" "canvas" "equation" "number" "res" "ind" "capc";
+            }
         }
     </style>
 </head>
