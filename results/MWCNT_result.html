@@ -68,11 +68,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding:100px;
+            flex-direction:column;
+            flex-wrap:wrap;
         }
         
         .numberOfSWCNT {
             grid-area: number;
             border:0.5px solid;
+            display: flex;
         }
         
         .resOfSWCNT {
@@ -93,6 +97,9 @@
         @media only screen and (max-width: 600px) {
             .contain{
                 grid-template-areas: "head" "table" "canvas" "equation" "number" "res" "ind" "capc";
+            }
+            .equation{
+                flex-direction: column;
             }
         }
     </style>
@@ -202,8 +209,14 @@
             <p>Open in Desktop for better quality</p>
         </div>
         <div class="equation numberOfSWCNT ">
-            <h3>Number of SWCNT : </h3>
-            <img src="../assets/img/NumberofSWCNT.gif " alt=" ">
+            <div>
+                <h3>Number of SWCNT : </h3>
+            </div>
+            <div>
+                 <img src="../assets/img/NumberofSWCNT.gif " alt=" ">
+            </div>
+            
+           
         </div>
         <div class="equation resOfSWCNT ">
             <h3>Resistance : </h3>
