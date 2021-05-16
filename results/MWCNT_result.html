@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result MWCNTB</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .table-content {
+            margin: 0 auto;
+        }
+        
+        .contain {
+            display: grid;
+            grid-template-areas: "head head" "table canvas" "equation equation" "number res" "ind capc";
+            width: 100%;
+        }
+        
+        .head {
+            grid-area: head;
+            text-align: center;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+        }
+        
+        .table-content {
+            margin-top: 100px;
+            grid-area: table;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: azure;
+        }
+        
+        .mycanva {
+            grid-area: canvas;
+            margin-top: 100px;
+        }
+
+        .equation-head{
+            grid-area:equation;
+            height:100px;
+        }
+        .equation{
+            display: flex;
+            justify-content: center;
+            align-items:center;
+        }
+
+        .numberOfSWCNT{
+            grid-area:number;
+        }
+        .resOfSWCNT{
+            grid-area:res;
+        }
+        .indOfSWCNT{
+            grid-area:ind;
+        }
+        .capcOfSWCNT{
+          
+    </style>
+</head>
+
+<body style="width: 100%;">
+    <div class="contain">
+        <div class="head" text-align:center ">
+            <h1 class="text-4xl ">MWCNT</h1>
+        </div>
+        <div class="table-content ">
+            <table class="min-w-full divide-y divide-gray-200 ">
+                <thead class="bg-gray-50 ">
+                    <tr>
+                        <th scope="col " class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                            Properties
+                        </th>
+                        <th scope="col " class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                            Values
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class=" divide-y divide-gray-200 ">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Width (W)
+                        </td>
+                        <td id="w " class="px-6 py-4 whitespace-nowrap ">
+                            10mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Height (t)
+                        </td>
+                        <td id="t " class="px-6 py-4 whitespace-nowrap ">
+                            10mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Diameter (d)
+                        </td>
+                        <td id="d " class="px-6 py-4 whitespace-nowrap ">
+                            12mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of SWCNTs (n)
+                        </td>
+                        <td id="n " class="px-6 py-4 whitespace-nowrap ">
+                            20mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Height abov ground (Hg)
+                        </td>
+                        <td id="hg " class="px-6 py-4 whitespace-nowrap ">
+                            20
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of MWCNTs
+                        </td>
+                        <td id="mwcnt " class="px-6 py-4 whitespace-nowrap ">
+                            2 Ohm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Register (R)
+                        </td>
+                        <td id="register " class="px-6 py-4 whitespace-nowrap ">
+                            2 Ohm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Inductance (L)
+                        </td>
+                        <td id="inductance " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Capacitance (C)
+                        </td>
+                        <td id="capacitance " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mycanva ">
+            <h3 class="row " style="margin-bottom: 50px; ">Structure of MWCNT :</h3>
+            <canvas id="myCanvas " style="border: 1.5px solid rgb(63, 63, 63); text-align: center; ">
+            Your browser does not support the canvas element.
+          </canvas>
+        </div>
+        <div class="equation-head" style="text-align:center;">
+            <h1>Equations</h1>
+        </div>
+        <div class="equation numberOfSWCNT">
+            <h3>Number of SWCNT : </h3>
+            <img src="../assets/img/NumberofSWCNT.gif" alt="">
+        </div>
+        <div class="equation resOfSWCNT">
+            <h3>Resistance : </h3>
+            <img src="../assets/img/ResistanceSWCNT.gif" alt="">
+        </div>
+        <div class="equation indOfSWCNT">
+            <h3>Inducatance : </h3>
+            <img src="../assets/img/InductanceSWCNT.gif" alt="">
+        </div>
+        <div class="equation capcOfSWCNT">
+            <h3>Capacitance : </h3>
+            <img src="../assets/img/CapacitanceSWCNT.gif" alt="">
+        </div>
+    </div>
+
+    <script>
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var w = Number(url.searchParams.get("w"));
+        console.log(typeof w);
+        var t = Number(url.searchParams.get("t"));
+        var dl = Number(url.searchParams.get("d"));
+        var no = Number(url.searchParams.get("n"));
+        var hg = Number(url.searchParams.get("hg"));
+        document.getElementById("w ").innerHTML = w;
+        document.getElementById("t ").innerHTML = t;
+        document.getElementById("d ").innerHTML = dl;
+        document.getElementById("n ").innerHTML = no;
+        document.getElementById("hg ").innerHTML = hg;
+
+        console.log(" w t d n hg ", w, t, dl, no, hg);
+        var d = dl + 2 * 0.34 * (no - 1);
+        var a = [],
+            b = [];
+        var r = d / 2;
+        var x = r,
+            y = r;
+        var n = 0,
+            j = 1;
+        while (y + r <= t) {
+            while (x + r <= w) {
+                a.push(x);
+                b.push(y);
+                n++;
+                x = x + d + 0.34;
+            }
+            j++;
+            if (j % 2 === 0) x = d + 0.17;
+            else x = r;
+            y = y + r * Math.sqrt(3) + 0.34;
+        }
+        document.getElementById("mwcnt ").innerHTML = n;
+        console.log("Number of SWCNT 's=", no);
+        console.log(" Their positions are : ");
+        var str = " ";
+        for (var i = 0; i < n; i++) str += a[i] + " " + b[i] + " ";
+        // document.getElementById("positions ").innerHTML =
+        //   "Their positions are : " + str;
+
+        //Register
+        var e = 1.6 * Math.pow(10, -19);
+        var h = 6.62 * Math.pow(10, -34);
+        var lambda = 0,
+            dTemp = 1;
+        for (var i = 0; i < no; i++) {
+            lambda += 1000 * dTemp;
+            dTemp += 0.68;
+        }
+        lambda *= 2 * e * e * 8;
+        var rEq = h / lambda;
+        var rdis = rEq / n;
+        console.log("register=" + rdis);
+        document.getElementById("register ").innerHTML = rdis;
+
+        //Inductance
+        var vf = 8 * Math.pow(10, 11);
+        var lk = h / (2 * e * e * vf);
+        var lkesc = lk / (8 * n * no * no);
+        //no - swcnt
+        //n - mwcnt
+        var lmesc = 2 * Math.pow(10, -7) * Math.acosh((dTemp + 2 * hg) / dTemp);
+        var ldis = (lkesc + lmesc) / n;
+        console.log(" inductance=" + ldis);
+        document.getElementById("inductance ").innerHTML = ldis;
+
+        //Capacitance
+        var nw = w / (dl + (no - 1) * 0.68);
+        var nt = n;
+        var cq = (2 * e * e * 8 * n * no) / (h * vf);
+        var e0 = 8.85 * Math.pow(10, -12);
+        var er = 3.9; //
+        var nx = nw; //
+        var ce = (2 * 3.14 * e0 * er * nx) / Math.acosh((dTemp + 2 * hg) / dTemp);
+        var cdis = ((cq * nt) * (ce * nw)) / ((cq * nt) + (ce * nw));
+        console.log(" capacitance=" + cdis);
+        document.getElementById("capacitance ").innerHTML = cdis;
+
+
+
+        var canvas = document.getElementById("myCanvas ");
+        canvas.setAttribute("width", w * 20);
+        canvas.setAttribute("height", t * 20);
+        var ctx = canvas.getContext("2d");
+        ctx.translate(0, canvas.height);
+        ctx.scale(1, -1);
+
+        for (var i = 0; i < n; i++) {
+            for (var j = 1; j < no + 1; j++) {
+                var m = (dl + 2 * 0.34 * (j - 1)) / 2;
+                ctx.beginPath();
+                ctx.arc(a[i] * 20, b[i] * 20, m * 20, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>SRI Application</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Armata">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Assistant">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Athiti">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cantarell">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Carme">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Commissioner">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gafata">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gothic+A1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jaldi">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Krub">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="d-flex justify-content-center align-content-center align-items-center" style="background-color: #EEF4F7">
+
+    <div class="ui main text container segment" style="border-radius:10px;">
+        <div class="ui header" style="text-align: center;">
+            SWCNT
+        </div>
+        <form class="ui form" id="myForm" action="results/SWCNT_result.html" method="GET">
+            <div class="field">
+                <label>W (Width)</label>
+                <input type="text" placeholder="00" id="w" name="w" />
+            </div>
+
+            <div class="field">
+                <label>t (Height)</label>
+                <input type="number" step="0.00000001" placeholder="00.00" required id="t" name="t" />
+            </div>
+
+            <div class="field">
+                <label>d (Diameter)</label>
+                <input type="number" step="0.00000001" placeholder="00.00" required id="d" name="d" />
+            </div>
+
+            <div class="field">
+                <label>Hg (Height above ground)</label>
+                <input type="number" step="0.00000001" placeholder="00.00" required id="hg" name="hg" />
+            </div>
+
+            <div class="ui basic segment">
+                <input class="ui basic blue button" type="submit" />
+                <input class="ui basic orange button" type="reset" />
+            </div>
+        </form>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</body>
+
+</html>
