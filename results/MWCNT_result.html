@@ -49,29 +49,45 @@
         .mycanva {
             grid-area: canvas;
             margin-top: 100px;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-
-        .equation-head{
-            grid-area:equation;
-            height:100px;
+        
+        .equation-head {
+            grid-area: equation;
+            height: 100px;
+            margin-top:50px;
         }
-        .equation{
+        
+        .equation {
             display: flex;
             justify-content: center;
-            align-items:center;
+            align-items: center;
+        }
+        
+        .numberOfSWCNT {
+            grid-area: number;
+        }
+        
+        .resOfSWCNT {
+            grid-area: res;
+        }
+        
+        .indOfSWCNT {
+            grid-area: ind;
+        }
+        
+        .capcOfSWCNT {
+            grid-area: capc;
         }
 
-        .numberOfSWCNT{
-            grid-area:number;
+        @media only screen and (max-width: 600px) {
+            .contain{
+                grid-template-areas: "head" "table" "canvas" "equation" "number" "res" "ind" "capc";
+            }
         }
-        .resOfSWCNT{
-            grid-area:res;
-        }
-        .indOfSWCNT{
-            grid-area:ind;
-        }
-        .capcOfSWCNT{
-          
     </style>
 </head>
 
@@ -174,24 +190,24 @@
             Your browser does not support the canvas element.
           </canvas>
         </div>
-        <div class="equation-head" style="text-align:center;">
+        <div class="equation-head " style="text-align:center; ">
             <h1>Equations</h1>
         </div>
-        <div class="equation numberOfSWCNT">
+        <div class="equation numberOfSWCNT ">
             <h3>Number of SWCNT : </h3>
-            <img src="../assets/img/NumberofSWCNT.gif" alt="">
+            <img src="../assets/img/NumberofSWCNT.gif " alt=" ">
         </div>
-        <div class="equation resOfSWCNT">
+        <div class="equation resOfSWCNT ">
             <h3>Resistance : </h3>
-            <img src="../assets/img/ResistanceSWCNT.gif" alt="">
+            <img src="../assets/img/ResistanceSWCNT.gif " alt=" ">
         </div>
-        <div class="equation indOfSWCNT">
+        <div class="equation indOfSWCNT ">
             <h3>Inducatance : </h3>
-            <img src="../assets/img/InductanceSWCNT.gif" alt="">
+            <img src="../assets/img/InductanceSWCNT.gif " alt=" ">
         </div>
-        <div class="equation capcOfSWCNT">
+        <div class="equation capcOfSWCNT ">
             <h3>Capacitance : </h3>
-            <img src="../assets/img/CapacitanceSWCNT.gif" alt="">
+            <img src="../assets/img/CapacitanceSWCNT.gif " alt=" ">
         </div>
     </div>
 
