@@ -21,20 +21,35 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="./Semantic-UI/semantic.css">
+    <link rel="stylesheet" href="./Semantic-UI/semantic.min.css">
+    <style>
+
+    </style>
 </head>
 
 <body class="d-flex justify-content-center align-content-center align-items-center" style="background-color: #EEF4F7">
+    <script>
+        $(document).ready(function() {
+            $('.ui.dropdown').dropdown();
+        });
+    </script>
+
 
     <div class="ui main text container segment" style="border-radius:10px;">
         <div class="ui header" style="text-align: center;">
-            MXCNT
+            Mixed CNT
         </div>
-        <form class="ui form" id="myForm" action="result1.html" method="GET">
+        <form class="ui form" id="myForm" action="results/MXCNT_result.html" method="GET">
             <div class="field">
                 <label>W (Width)</label>
-                <input type="text" placeholder="00" id="w" name="w" />
+                <input type="number" placeholder="00" id="w" name="w" />
             </div>
 
             <div class="field">
@@ -48,8 +63,30 @@
             </div>
 
             <div class="field">
+                <label>n for MWCNT (Number of SWCNT) </label>
+                <input type="number" step="0.00000001" placeholder="00.00" required id="n" name="n" />
+            </div>
+
+            <div class="field">
                 <label>Hg (Height above ground)</label>
                 <input type="number" step="0.00000001" placeholder="00.00" required id="hg" name="hg" />
+            </div>
+
+            <div class="ui fluid selection dropdown">
+                <input type="hidden" name="user">
+                <i class="dropdown icon"></i>
+                <div class="default text">Select one of Mixed Structure</div>
+                <div class="menu">
+                    <div class="item" data-value="jenny">
+                        <img class="ui mini avatar image" src="./assets/img/MCB1.png"> MCB-I
+                    </div>
+                    <div class="item" data-value="elliot">
+                        <img class="ui mini avatar image" src="./assets/img/MCB2.png"> MCB-II
+                    </div>
+                    <div class="item" data-value="stevie">
+                        <img class="ui mini avatar image" src="./assets/img/MCB3.png"> MCB-III
+                    </div>
+                </div>
             </div>
 
             <div class="ui basic segment">
@@ -62,6 +99,10 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="./Semantic-UI/semantic.js"></script>
+    <script src="./Semantic-UI/semantic.min.js"></script>
+    <script>
+    </script>
 </body>
 
 </html>
