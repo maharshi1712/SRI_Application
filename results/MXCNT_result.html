@@ -297,7 +297,14 @@
                 y = y + r * Math.sqrt(3) + 0.17;
             }
             console.log("Number of SWCNT 's = ", n);
-
+            var x = b[0],Nx=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
+            }
             var canvas = document.getElementById("myCanvas ");
             canvas.setAttribute("width", w * 20);
             canvas.setAttribute("height", t * 20);
@@ -334,6 +341,16 @@
                 else x = w/2+no*0.34;
                 y = y + r * Math.sqrt(3) + 0.34;
             }
+             var x = e[0];
+            for(var i=0;i<e.length;i++){
+                if(e[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
+            }
+
+
             for (var i = 0; i < nm; i++) {
                 for (var j = 1; j < no + 1; j++) {
                     var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
@@ -497,22 +514,40 @@
         var dmax = dmin + 2*0.34*(no-1);
         var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
         console.log("dmax=",dmax,"Nshell=",Nshell);
+
+        //Nchannels............................................................................
+       /* var Nch;
+        for(var i=0;i<Nshell;i++){
+            var p = 1300/300;
+            if()
+            Nch = Nch + 
+        }*/
+
         //Resistance...........................................................................
-        var resistance,res1=0;
+        var resistance1,resistance2,res1=0,res2=0;
         var Rq = 6450;
         var Rmc = 3500;
         for(var i=1; i<=Nshell; i++){
             var di = dmax - 2*0.34*(i-1);
             var Ni = di*0.0612 + 0.425;
             res1 = res1 + 1/((Rq/(Ni*di))+Rmc);
-            console.log(di,Ni,res1);
         }
-        resistance = Ncnt*(1/(res1*1000));
-        console.log(resistance);
-        document.getElementById("register1 ").innerHTML = resistance+" K\u2126";
-        
+        resistance1 = Ncnt*(1/(res1*1000));
+        console.log(resistance1);
+        document.getElementById("register1 ").innerHTML = resistance1+" K\u2126";
 
-       
+        for(var i=1; i<=Nshell; i++){
+            var di = dmax - 2*0.34*(i-1);
+            var Ni = di*0.0612 + 0.425;
+            res2 = res2 + (Ni*di*1000*di)/Rq;
+        }
+        resistance2 = Ncnt*(1/res2);
+        console.log(resistance2);
+        document.getElementById("register2 ").innerHTML = resistance2+" K\u2126";
+
+        //Capacitance............................................................................
+        /*var Cq,Cqo=
+        Cq = 2*/
        
     </script>
 </body>
