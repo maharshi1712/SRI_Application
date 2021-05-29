@@ -182,9 +182,17 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Register (R)
+                            Register of lump (Rlump)
                         </td>
-                        <td id="register " class="px-6 py-4 whitespace-nowrap ">
+                        <td id="register1 " class="px-6 py-4 whitespace-nowrap ">
+                            2 Ohm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Register of Equivalent Single Conductor (Resc)
+                        </td>
+                        <td id="register2 " class="px-6 py-4 whitespace-nowrap ">
                             2 Ohm
                         </td>
                     </tr>
@@ -295,7 +303,7 @@
         }
         resistance = Ncnt*(1/(res1*1000));
         console.log(resistance);
-        document.getElementById("register ").innerHTML = resistance+" K\u2126";
+        document.getElementById("register1 ").innerHTML = resistance+" K\u2126";
 
 
 
