@@ -1,15 +1,337 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result of Mixed CNT</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .table-content {
+            margin: 0 auto;
+        }
+        
+        .contain {
+            display: grid;
+            grid-template-areas: "head head" "table canvas" "equation equation" "number res" "ind capc";
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        
+        .head {
+            grid-area: head;
+            text-align: center;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+            border-bottom: 1px solid grey;
+        }
+        
+        .table-content {
+            margin-top: 100px;
+            grid-area: table;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: azure;
+        }
+        
+        .mycanva {
+            grid-area: canvas;
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .equation-head {
+            grid-area: equation;
+            height: 100px;
+            margin-top: 50px;
+            border: 0.5px solid;
+            padding-top: 10px;
+        }
+        
+        .equation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        
+        .numberOfSWCNT {
+            grid-area: number;
+            border: 0.5px solid;
+            display: flex;
+        }
+        
+        .resOfSWCNT {
+            grid-area: res;
+            border: 0.5px solid;
+        }
+        
+        .indOfSWCNT {
+            grid-area: ind;
+            border: 0.5px solid;
+        }
+        
+        .capcOfSWCNT {
+            grid-area: capc;
+            border: 0.5px solid;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .contain {
+                grid-template-areas: "head" "table" "canvas" "equation" "number" "res" "ind" "capc";
+            }
+            .equation {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body style="width: 100%;">
+    <div class="contain">
+        <div class="head" text-align:center ">
+            <h1 class="text-4xl ">Mixed CNT</h1>
+        </div>
+        <div class="table-content ">
+            <table class="min-w-full divide-y divide-gray-200 ">
+                <thead class="bg-gray-50 ">
+                    <tr>
+                        <th scope="col " class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                            Properties
+                        </th>
+                        <th scope="col " class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                            Values
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class=" divide-y divide-gray-200 ">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Width (W)
+                        </td>
+                        <td id="w " class="px-6 py-4 whitespace-nowrap ">
+                            10mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Height (t)
+                        </td>
+                        <td id="t " class="px-6 py-4 whitespace-nowrap ">
+                            10mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Diameter (d)
+                        </td>
+                        <td id="d " class="px-6 py-4 whitespace-nowrap ">
+                            12mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of SWCNTs (n)
+                        </td>
+                        <td id="n " class="px-6 py-4 whitespace-nowrap ">
+                            20mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Height abov ground (Hg)
+                        </td>
+                        <td id="hg " class="px-6 py-4 whitespace-nowrap ">
+                            20
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of CNT (Ncnt)
+                        </td>
+                        <td id="ncnt " class="px-6 py-4 whitespace-nowrap ">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Register (R)
+                        </td>
+                        <td id="register " class="px-6 py-4 whitespace-nowrap ">
+                            2 Ohm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Inductance (L)
+                        </td>
+                        <td id="inductance " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Capacitance (C)
+                        </td>
+                        <td id="capacitance " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mycanva ">
+            <h3 class="row " style="margin-bottom: 50px; ">Structure of Mixed CNT :</h3>
+            <canvas id="myCanvas " style="border: 1.5px solid rgb(63, 63, 63); text-align: center; ">
+            Your browser does not support the canvas element.
+          </canvas>
+        </div>
+        <div class="equation-head " style="text-align:center; ">
+            <h1>Equations</h1>
+            <p>Open in Desktop for better quality</p>
+        </div>
+        <div class="equation numberOfSWCNT ">
+            <div>
+                <h3>Number of Mixed CNT : </h3>
+            </div>
+            <div>
+                 <img src="../assets/img/numberMXCNT.gif " alt=" ">
+            </div>
+            
+           
+        </div>
+        <div class="equation resOfSWCNT ">
+            <h3>Resistance : </h3>
+            <img src="../assets/img/resMXCNT.gif " alt=" ">
+        </div>
+        <div class="equation indOfSWCNT ">
+            <h3>Inducatance : </h3>
+            <img src="../assets/img/induMXCNT.gif " alt=" ">
+        </div>
+        <div class="equation capcOfSWCNT ">
+            <h3>Capacitance : </h3>
+            <img src="../assets/img/capcMXCNT.gif " alt=" ">
+        </div>
+    </div>
 
+    <script>
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var w = Number(url.searchParams.get("w"));
+        var t = Number(url.searchParams.get("t"));
+        var d = Number(url.searchParams.get("d"));
+        var dmin = Number(url.searchParams.get("dmin"));
+        var no = Number(url.searchParams.get("n"));
+        var hg = Number(url.searchParams.get("hg"));
+        document.getElementById("w ").innerHTML = w;
+        document.getElementById("t ").innerHTML = t;
+        document.getElementById("d ").innerHTML = d;
+        document.getElementById("n ").innerHTML = no;
+        document.getElementById("hg ").innerHTML = hg;
+
+        //Ncnt.......
+        var Ncnt;
+        var Nw = Math.floor((w-d)/(d+0.34))+1;
+        var Nh = Math.floor((t-d)/((Math.sqrt(3)/2)*(d+0.34)))+1;
+        
+        if(Nh%2 == 0){
+            Ncnt = Nw*Nh-(Nh/2);
+        }else{
+            Ncnt = Nw*Nh-((Nh-1)/2);
+        }
+        document.getElementById("ncnt ").innerHTML = Ncnt;
+        console.log(Nw);
+        console.log(Nh);
+        console.log(Ncnt);
+
+
+        //canvas..................................................
+        var a = [],
+            b = [];
+        var r = d / 2;
+        var x = r,
+            y = r;
+        var n = 0,
+            j = 1;
+        while (y + r <= t) {
+            while (x + r <= w/2) {
+                a.push(x);
+                b.push(y);
+                n++;
+                x = x + d;
+            }
+            j++;
+            if (j % 2 === 0) x = d + 0.17;
+            else x = r;
+            y = y + r * Math.sqrt(3) + 0.17;
+        }
+        console.log("Number of SWCNT 's = ", n);
+
+        var canvas = document.getElementById("myCanvas ");
+        canvas.setAttribute("width", w * 20);
+        canvas.setAttribute("height", t * 20);
+        var ctx = canvas.getContext("2d");
+        ctx.translate(0, canvas.height);
+        ctx.scale(1, -1);
+
+
+        for (var i = 0; i < n; i++) {
+            // ctx.moveTo(a[i] * 20, b[i] * 20);
+            ctx.beginPath();
+            ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+            // ctx.fill();
+            ctx.stroke();
+        }
+
+        var c = [],
+            e = [];
+        console.log(c,d);
+        var dm = dmin + 2 * 0.34 * (no - 1);
+        var r = dm / 2;
+        var x = w/2+no*0.34;
+            y = r;
+        var nm = 0,
+            j = 1;
+        while (y + r <= t) {
+            while (x + r <= w) {
+                c.push(x);
+                e.push(y);
+                nm++;
+                x = x + dm + 0.34;
+            }
+            j++;
+            x = w/2+no*0.34;
+            y = y + r * Math.sqrt(3) + 0.34;
+        }
+        console.log(c,e);
+         for (var i = 0; i < nm; i++) {
+            for (var j = 1; j < no + 1; j++) {
+                var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                ctx.beginPath();
+                ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+        }
+    </script>
 </body>
 
 </html>
