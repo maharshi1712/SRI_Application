@@ -275,40 +275,8 @@
             document.getElementById("str ").innerHTML = "MCB-III";
         }
 
-        //Ncnt.......
-        var Ncnt;
-        var Nw = Math.floor((w-d)/(d+0.34))+1;
-        var Nh = Math.floor((t-d)/((Math.sqrt(3)/2)*(d+0.34)))+1;
-        
-        if(Nh%2 == 0){
-            Ncnt = Nw*Nh-(Nh/2);
-        }else{
-            Ncnt = Nw*Nh-((Nh-1)/2);
-        }
-        document.getElementById("ncnt ").innerHTML = Ncnt;
-        console.log("Nw=",Nw,"Nh=",Nh,"Ncnt=",Ncnt);
-
-        var dmax = dmin + 2*0.34*(no-1);
-        var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
-        console.log("dmax=",dmax,"Nshell=",Nshell);
-        //Resistance...........................................................................
-        var resistance,res1=0;
-        var Rq = 6450;
-        var Rmc = 3500;
-        for(var i=1; i<=Nshell; i++){
-            var di = dmax - 2*0.34*(i-1);
-            var Ni = di*0.0612 + 0.425;
-            res1 = res1 + 1/((Rq/(Ni*di))+Rmc);
-            console.log(di,Ni,res1);
-        }
-        resistance = Ncnt*(1/(res1*1000));
-        console.log(resistance);
-        document.getElementById("register1 ").innerHTML = resistance+" K\u2126";
-
-
-
         //canvas...............................................................................
-        if(str === "mcb1"){
+         if(str === "mcb1"){
              var a = [],
                 b = [];
             var r = d / 2;
@@ -362,7 +330,7 @@
                     x = x + dm + 0.34;
                 }
                 j++;
-                if (j % 2 === 0) x = w/2 + no*0.34 + r;
+                if (j % 2 === 0) x = w/2  + r;
                 else x = w/2+no*0.34;
                 y = y + r * Math.sqrt(3) + 0.34;
             }
@@ -511,6 +479,40 @@
                 }
             }
         }
+
+
+        //Ncnt.......
+        var Ncnt;
+        var Nw = Math.floor((w-d)/(d+0.34))+1;
+        var Nh = Math.floor((t-d)/((Math.sqrt(3)/2)*(d+0.34)))+1;
+        
+        if(Nh%2 == 0){
+            Ncnt = Nw*Nh-(Nh/2);
+        }else{
+            Ncnt = Nw*Nh-((Nh-1)/2);
+        }
+        document.getElementById("ncnt ").innerHTML = Ncnt;
+        console.log("Nw=",Nw,"Nh=",Nh,"Ncnt=",Ncnt);
+
+        var dmax = dmin + 2*0.34*(no-1);
+        var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
+        console.log("dmax=",dmax,"Nshell=",Nshell);
+        //Resistance...........................................................................
+        var resistance,res1=0;
+        var Rq = 6450;
+        var Rmc = 3500;
+        for(var i=1; i<=Nshell; i++){
+            var di = dmax - 2*0.34*(i-1);
+            var Ni = di*0.0612 + 0.425;
+            res1 = res1 + 1/((Rq/(Ni*di))+Rmc);
+            console.log(di,Ni,res1);
+        }
+        resistance = Ncnt*(1/(res1*1000));
+        console.log(resistance);
+        document.getElementById("register1 ").innerHTML = resistance+" K\u2126";
+        
+
+       
        
     </script>
 </body>
