@@ -150,7 +150,7 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Number of SWCNTs (n)
+                            Number of SWCNTs in MWCNTs (n)
                         </td>
                         <td id="n " class="px-6 py-4 whitespace-nowrap ">
                             20mm
@@ -242,6 +242,7 @@
         var dmin = Number(url.searchParams.get("dmin"));
         var no = Number(url.searchParams.get("n"));
         var hg = Number(url.searchParams.get("hg"));
+        var str = String(url.searchParams.get("str"));
         document.getElementById("w ").innerHTML = w;
         document.getElementById("t ").innerHTML = t;
         document.getElementById("d ").innerHTML = d;
@@ -265,72 +266,214 @@
 
 
         //canvas..................................................
-        var a = [],
-            b = [];
-        var r = d / 2;
-        var x = r,
-            y = r;
-        var n = 0,
-            j = 1;
-        while (y + r <= t) {
-            while (x + r <= w/2) {
-                a.push(x);
-                b.push(y);
-                n++;
-                x = x + d;
+        if(str === "mcb1"){
+             var a = [],
+                b = [];
+            var r = d / 2;
+            var x = r,
+                y = r;
+            var n = 0,
+                j = 1;
+            while (y + r <= t) {
+                while (x + r <= w/2) {
+                    a.push(x);
+                    b.push(y);
+                    n++;
+                    x = x + d;
+                }
+                j++;
+                if (j % 2 === 0) x = d + 0.17;
+                else x = r;
+                y = y + r * Math.sqrt(3) + 0.17;
             }
-            j++;
-            if (j % 2 === 0) x = d + 0.17;
-            else x = r;
-            y = y + r * Math.sqrt(3) + 0.17;
-        }
-        console.log("Number of SWCNT 's = ", n);
+            console.log("Number of SWCNT 's = ", n);
 
-        var canvas = document.getElementById("myCanvas ");
-        canvas.setAttribute("width", w * 20);
-        canvas.setAttribute("height", t * 20);
-        var ctx = canvas.getContext("2d");
-        ctx.translate(0, canvas.height);
-        ctx.scale(1, -1);
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
 
 
-        for (var i = 0; i < n; i++) {
-            // ctx.moveTo(a[i] * 20, b[i] * 20);
-            ctx.beginPath();
-            ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
-            // ctx.fill();
-            ctx.stroke();
-        }
-
-        var c = [],
-            e = [];
-        console.log(c,d);
-        var dm = dmin + 2 * 0.34 * (no - 1);
-        var r = dm / 2;
-        var x = w/2+no*0.34;
-            y = r;
-        var nm = 0,
-            j = 1;
-        while (y + r <= t) {
-            while (x + r <= w) {
-                c.push(x);
-                e.push(y);
-                nm++;
-                x = x + dm + 0.34;
-            }
-            j++;
-            x = w/2+no*0.34;
-            y = y + r * Math.sqrt(3) + 0.34;
-        }
-        console.log(c,e);
-         for (var i = 0; i < nm; i++) {
-            for (var j = 1; j < no + 1; j++) {
-                var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+            for (var i = 0; i < n; i++) {
+                // ctx.moveTo(a[i] * 20, b[i] * 20);
                 ctx.beginPath();
-                ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                // ctx.fill();
                 ctx.stroke();
             }
+
+            var c = [],
+                e = [];
+            console.log(c,d);
+            var dm = dmin + 2 * 0.34 * (no - 1);
+            var r = dm / 2;
+            var x = w/2+no*0.34;
+                y = r;
+            var nm = 0,
+                j = 1;
+            while (y + r <= t) {
+                while (x + r <= w) {
+                    c.push(x);
+                    e.push(y);
+                    nm++;
+                    x = x + dm + 0.34;
+                }
+                j++;
+                if (j % 2 === 0) x = w/2 +dm+ no*0.17;
+                else x = w/2+no*0.34;
+                y = y + r * Math.sqrt(3) + 0.34;
+            }
+            console.log(c,e);
+            for (var i = 0; i < nm; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
         }
+        if(str === "mcb2"){
+                         var a = [],
+                b = [];
+            var r = d / 2;
+            var x = r,
+                y = r;
+            var n = 0,
+                j = 1;
+            while (y + r <= t/2) {
+                while (x + r <= w) {
+                    a.push(x);
+                    b.push(y);
+                    n++;
+                    x = x + d;
+                }
+                j++;
+                if (j % 2 === 0) x = d + 0.17;
+                else x = r;
+                y = y + r * Math.sqrt(3) + 0.17;
+            }
+            console.log("Number of SWCNT 's = ", n);
+
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+
+            for (var i = 0; i < n; i++) {
+                // ctx.moveTo(a[i] * 20, b[i] * 20);
+                ctx.beginPath();
+                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                // ctx.fill();
+                ctx.stroke();
+            }
+
+            var c = [],
+                e = [];
+            console.log(c,d);
+            var dm = dmin + 2 * 0.34 * (no - 1);
+            var r = dm / 2;
+            var x = r;
+                y = t/2 + no*0.34;
+            var nm = 0,
+                j = 1;
+            while (y + r <= t) {
+                while (x + r <= w) {
+                    c.push(x);
+                    e.push(y);
+                    nm++;
+                    x = x + dm + 0.34;
+                }
+                j++;
+                if (j % 2 === 0) x = dm+ 0.17;
+                else x = r;
+                y = y + r * Math.sqrt(3) + no*0.17;
+            }
+            console.log(c,e);
+            for (var i = 0; i < nm; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
+        }
+        if(str === "mcb3"){
+                         var a = [],
+                b = [];
+            var r = d / 2;
+            var x = r,
+                y = r;
+            var n = 0,
+                j = 1;
+            while (y + r <= t) {
+                while (x + r <= w/2) {
+                    a.push(x);
+                    b.push(y);
+                    n++;
+                    x = x + d;
+                }
+                j++;
+                if (j % 2 === 0) x = d + 0.17;
+                else x = r;
+                y = y + r * Math.sqrt(3) + 0.17;
+            }
+            console.log("Number of SWCNT 's = ", n);
+
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+
+            for (var i = 0; i < n; i++) {
+                // ctx.moveTo(a[i] * 20, b[i] * 20);
+                ctx.beginPath();
+                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                // ctx.fill();
+                ctx.stroke();
+            }
+
+            var c = [],
+                e = [];
+            console.log(c,d);
+            var dm = dmin + 2 * 0.34 * (no - 1);
+            var r = dm / 2;
+            var x = w/2+no*0.34;
+                y = r;
+            var nm = 0,
+                j = 1;
+            while (y + r <= t) {
+                while (x + r <= w) {
+                    c.push(x);
+                    e.push(y);
+                    nm++;
+                    x = x + dm + 0.34;
+                }
+                j++;
+                if (j % 2 === 0) x = w/2 +0.34+ no*0.17;
+                else x = w/2+no*0.34;
+                y = y + r * Math.sqrt(3) + 0.34;
+            }
+            console.log(c,e);
+            for (var i = 0; i < nm; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
+        }
+       
     </script>
 </body>
 
