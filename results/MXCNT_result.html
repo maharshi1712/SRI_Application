@@ -174,6 +174,14 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
+                            Type of Structure of Mixed CNT
+                        </td>
+                        <td id="str " class="px-6 py-4 whitespace-nowrap ">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
                             Register (R)
                         </td>
                         <td id="register " class="px-6 py-4 whitespace-nowrap ">
@@ -249,6 +257,16 @@
         document.getElementById("n ").innerHTML = no;
         document.getElementById("hg ").innerHTML = hg;
 
+        if(str==="mcb1"){
+            document.getElementById("str ").innerHTML = "MCB-I";
+        }
+        if(str==="mcb2"){
+            document.getElementById("str ").innerHTML = "MCB-II";
+        }
+        if(str==="mcb3"){
+            document.getElementById("str ").innerHTML = "MCB-III";
+        }
+
         //Ncnt.......
         var Ncnt;
         var Nw = Math.floor((w-d)/(d+0.34))+1;
@@ -260,12 +278,28 @@
             Ncnt = Nw*Nh-((Nh-1)/2);
         }
         document.getElementById("ncnt ").innerHTML = Ncnt;
-        console.log(Nw);
-        console.log(Nh);
-        console.log(Ncnt);
+        console.log("Nw=",Nw,"Nh=",Nh,"Ncnt=",Ncnt);
+
+        var dmax = dmin + 2*0.34*(no-1);
+        var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
+        console.log("dmax=",dmax,"Nshell=",Nshell);
+        //Resistance...........................................................................
+        var resistance,res1=0;
+        var Rq = 6450;
+        var Rmc = 3500;
+        for(var i=1; i<=Nshell; i++){
+            var di = dmax - 2*0.34*(i-1);
+            var Ni = di*0.0612 + 0.425;
+            res1 = res1 + 1/((Rq/(Ni*di))+Rmc);
+            console.log(di,Ni,res1);
+        }
+        resistance = Ncnt*(1/(res1*1000));
+        console.log(resistance);
+        document.getElementById("register ").innerHTML = resistance+" K\u2126";
 
 
-        //canvas..................................................
+
+        //canvas...............................................................................
         if(str === "mcb1"){
              var a = [],
                 b = [];
@@ -306,7 +340,6 @@
 
             var c = [],
                 e = [];
-            console.log(c,d);
             var dm = dmin + 2 * 0.34 * (no - 1);
             var r = dm / 2;
             var x = w/2+no*0.34;
@@ -321,11 +354,10 @@
                     x = x + dm + 0.34;
                 }
                 j++;
-                if (j % 2 === 0) x = w/2 +dm+ no*0.17;
+                if (j % 2 === 0) x = w/2 + no*0.34 + r;
                 else x = w/2+no*0.34;
                 y = y + r * Math.sqrt(3) + 0.34;
             }
-            console.log(c,e);
             for (var i = 0; i < nm; i++) {
                 for (var j = 1; j < no + 1; j++) {
                     var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
@@ -375,7 +407,7 @@
 
             var c = [],
                 e = [];
-            console.log(c,d);
+           
             var dm = dmin + 2 * 0.34 * (no - 1);
             var r = dm / 2;
             var x = r;
@@ -394,7 +426,7 @@
                 else x = r;
                 y = y + r * Math.sqrt(3) + no*0.17;
             }
-            console.log(c,e);
+
             for (var i = 0; i < nm; i++) {
                 for (var j = 1; j < no + 1; j++) {
                     var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
@@ -444,7 +476,6 @@
 
             var c = [],
                 e = [];
-            console.log(c,d);
             var dm = dmin + 2 * 0.34 * (no - 1);
             var r = dm / 2;
             var x = w/2+no*0.34;
@@ -463,7 +494,6 @@
                 else x = w/2+no*0.34;
                 y = y + r * Math.sqrt(3) + 0.34;
             }
-            console.log(c,e);
             for (var i = 0; i < nm; i++) {
                 for (var j = 1; j < no + 1; j++) {
                     var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
