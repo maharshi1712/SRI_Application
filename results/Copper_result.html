@@ -204,17 +204,17 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Temperature (T)
+                            Distance between two wires (d)
                         </td>
-                        <td id="t " class="px-6 py-4 whitespace-nowrap ">
+                        <td id="d " class="px-6 py-4 whitespace-nowrap ">
                             20
                         </td>
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Relative Permitivity of SiO2 (Eox)
+                            Temperature (T)
                         </td>
-                        <td id="eox " class="px-6 py-4 whitespace-nowrap ">
+                        <td id="t " class="px-6 py-4 whitespace-nowrap ">
                             20
                         </td>
                     </tr>
@@ -236,7 +236,31 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Capacitance (C)
+                            Mutual Inductance (M)
+                        </td>
+                        <td id="Minductance " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Coupling Capacitance (Cc)
+                        </td>
+                        <td id="capacitanceC " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Capacitance with respect to ground (Cg)
+                        </td>
+                        <td id="capacitanceG " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Capacitance (Ctotal)
                         </td>
                         <td id="capacitance " class="px-6 py-4 whitespace-nowrap ">
                             200 C
@@ -285,6 +309,7 @@
         var l = Number(url.searchParams.get("l"));
         var hg = Number(url.searchParams.get("hg"));
         var s = Number(url.searchParams.get("s"));
+        var d = Number(url.searchParams.get("d"));
         var eox = Number(url.searchParams.get("eox"));
         document.getElementById("w ").innerHTML = w+" nm";
         document.getElementById("t ").innerHTML = temp+" K";
@@ -292,7 +317,7 @@
         document.getElementById("l ").innerHTML = l+" nm";
         document.getElementById("hg ").innerHTML = hg+" nm";
         document.getElementById("s ").innerHTML = s+" nm";
-        document.getElementById("eox ").innerHTML = eox;
+        document.getElementById("d ").innerHTML = d+" nm";
         
         console.log(" w temp h l hg eox ", w, temp, h, l, hg, eox);
 
@@ -303,17 +328,21 @@
 
         
         //Capacitance 
-        var c1 = (w/h)+(2.04)*Math.pow(h/(h+(4.531*hg)),0.071)*Math.pow(s/(s+(0.5355*hg)),1.733);
+        var c1 = (w/h)+(2.04)*Math.pow(h/(h+(4.531*hg)),0.071)*Math.pow(s/(s+(0.5355*hg)),1.77);
         var Cg = 6*c1;
+        document.getElementById("capacitanceG ").innerHTML = Cg+" C";
         var c2 = 1.4116*(h/s)*Math.exp(-4*s/(s+(8.014*hg)))+(2.3704*Math.pow(w/(w+0.307),0.2572)*Math.pow(hg/(hg+(8.961*s)),0.7571)*Math.exp(-2*s/(s+(6*hg))));
         var Cc = 6.1*c2;
+        document.getElementById("capacitanceC ").innerHTML = Cc+" C";
         document.getElementById("capacitance ").innerHTML = 2*(Cg+Cc)+" C";
 
 
         //Inductance.............................................................
         var l1 = Math.log((2*l)/(w+h))+0.5+(0.22*(w+h)/l);
-        var L = 2*Math.pow(10,-16)*l1;
+        var L = 2*Math.pow(10,-16)*l1*l;
         console.log(L);
+        var M = 2*Math.pow(10,-16)*l*(Math.log(2*l/d)-1+(d/l));
+        document.getElementById("Minductance ").innerHTML = M + " H";
         document.getElementById("inductance ").innerHTML = L + " H";
 
         </script>
