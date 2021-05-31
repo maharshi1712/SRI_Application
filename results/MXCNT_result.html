@@ -334,7 +334,7 @@
                 e = [];
             var dm = dmin + 2 * 0.34 * (no - 1);
             var r = dm / 2;
-            var x = a[n-1]+dmin+0.2*no;
+            var x = a[n-1]+dmin+0.34*no;
                 y = r;
             var nm = 0,
                 j = 1;
@@ -346,8 +346,8 @@
                     x = x + dm + 0.2;
                 }
                 j++;
-                if (j % 2 === 0) x = a[n-1] +dmin+no*0.34;
-                else x = a[n-1]+dmin+no*0.34;
+                if (j % 2 === 0) x = a[n-1] +dm+0.34;
+                else x = a[n-1]+dmin+0.34*no;
                 y = y + r * Math.sqrt(3) + 0.34;
             }
              var x = e[0];
