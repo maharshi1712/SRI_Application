@@ -166,6 +166,14 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
+                            Diameter(min) of MWCNT (Dmin)
+                        </td>
+                        <td id="dmin " class="px-6 py-4 whitespace-nowrap ">
+                            20
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
                             Number of CNT (Ncnt)
                         </td>
                         <td id="ncnt " class="px-6 py-4 whitespace-nowrap ">
@@ -264,6 +272,7 @@
         document.getElementById("d ").innerHTML = d;
         document.getElementById("n ").innerHTML = no;
         document.getElementById("hg ").innerHTML = hg;
+        document.getElementById("dmin ").innerHTML = dmin;
 
         if(str==="mcb1"){
             document.getElementById("str ").innerHTML = "MCB-I";
@@ -306,7 +315,7 @@
                 y = y + r * Math.sqrt(3) + 0.17;
             }
             console.log("Number of SWCNT 's = ", n);
-            var x = b[0],Nx=0;
+            var x = b[0],Nx=0,pos=0;
             for(var i=0;i<=b.length;i++){
                 if(b[i]!==x){
                     break;
@@ -334,7 +343,7 @@
                 e = [];
             var dm = dmin + 2 * 0.34 * (no - 1);
             var r = dm / 2;
-            var x = a[n-1]+dmin+0.34*no;
+            var x = a[Nx-1]+(no*(0.34))+d/2+dmin/2;
                 y = r;
             var nm = 0,
                 j = 1;
@@ -346,8 +355,8 @@
                     x = x + dm + 0.2;
                 }
                 j++;
-                if (j % 2 === 0) x = a[n-1] +dm+0.34;
-                else x = a[n-1]+dmin+0.34*no;
+                if (j % 2 === 0) x = a[Nx-1] +(no)*0.34+d/2+dm/2;
+                else x = a[Nx-1]+(no*0.34)+d/2+dmin/2;
                 y = y + r * Math.sqrt(3) + 0.34;
             }
              var x = e[0];
@@ -387,6 +396,15 @@
                 else x = r;
                 y = y + r * Math.sqrt(3) + 0.17;
             }
+            var x = b[0],Nx=0,pos=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
+            }
+
             console.log("Number of SWCNT 's = ", n);
 
             var canvas = document.getElementById("myCanvas ");
@@ -411,7 +429,7 @@
             var dm = dmin + 2 * 0.34 * (no - 1);
             var r = dm / 2;
             var x = r;
-                y = b[n-1]+d;
+                y = b[n-1]+d/2+dmin/2+(no-1)*0.34;
             var nm = 0,
                 j = 1;
             while (y + r <= t) {
@@ -455,6 +473,15 @@
                 if (j % 2 === 0) x = d + 0.17;
                 else x = r;
                 y = y + r * Math.sqrt(3) + 0.17;
+            }
+
+            var x = b[0],Nx=0,pos=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
             }
             console.log("Number of SWCNT 's = ", n);
 
@@ -504,27 +531,48 @@
             }
         }
         if(str === "mcb4"){
-            var d = dl + 2 * 0.34 * (no - 1);
+            var dm = dmin + 2 * 0.34 * (no - 1);
             var a = [],
                 b = [];
-            var r = d / 2;
+            var r = dm / 2;
             var x = r,
                 y = r;
             var n = 0,
                 j = 1;
-            while (y + r <= t) {
-                while (x + r <= w/2) {
-                    a.push(x);
-                    b.push(y);
-                    n++;
-                    x = x + d + 0.34;
-                }
-                j++;
-                if (j % 2 === 0) x = d + 0.17;
-                else x = r;
-                y = y + r * Math.sqrt(3) + 0.34;
-            }
 
+            while(x+r<=w){
+                a.push(x);
+                b.push(y);
+                x = x + dm + 0.34;
+            }
+            x=a[a.length-2];
+            while(y+r<=t){
+                a.push(x);
+                b.push(y);
+                y = y + r*Math.sqrt(3)+0.34;
+            }
+            y = b[b.lenth-2];
+            while(x-r>=0){
+                a.push(x);
+                b.push(y);
+                x = x - dm - 0.34;
+            }
+            x = a[a.length-2];
+            while(y-r>=0){
+                a.push(x);
+                b.push(y);
+                y = y - r*Math.sqrt(3)-0.34;
+            }
+            console.log(a,b);
+
+            var x = b[0],Nx=0,pos=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
+            }
             console.log("Number of SWCNT 's = ", n);
 
             var canvas = document.getElementById("myCanvas ");
@@ -588,10 +636,22 @@
                     x = x + dm + (no+1)*0.34;
                 }
                 j++;
-                if (j % 2 === 0) x = dm + (no+1)*0.17;
+                if (j % 2 === 0) x = dm + (no-1)*0.34;
                 else x = r+(no+1)*0.2;
                 y = y + r * Math.sqrt(3) + (no+1)*0.4;
             }
+
+            var x = b[0],Nx=0,pos=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
+            }
+
+            var lastIndex = Math.max(...a);
+            console.log(lastIndex);
 
             var canvas = document.getElementById("myCanvas ");
             canvas.setAttribute("width", w * 20);
@@ -612,7 +672,7 @@
             var c = [],
                 e = [];
             var r = d / 2;
-            var x = d+a[n-1]+(0.34*no),
+            var x = r+lastIndex+(no+1)*0.34+dmin/2,
                 y = r;
             var ns = 0,
                 j = 1;
@@ -624,8 +684,8 @@
                     x = x + d + 0.15;
                 }
                 j++;
-                if (j % 2 === 0) x =  d + 0.34 +a[n-1]+(0.34*no);
-                else x = d+w/2+0.34;
+                if (j % 2 === 0) x =  d/2 +r+lastIndex+(no+1)*0.34+dmin/2;
+                else x = r+lastIndex+(no+1)*0.34+dmin/2;
                 y = y + r * Math.sqrt(3) + 0.2  ;
             }
             for (var i = 0; i < ns; i++) {
@@ -656,6 +716,15 @@
                 if (j % 2 === 0) x = d + 0.17;
                 else x = r;
                 y = y + r * Math.sqrt(3) + 0.17;
+            }
+
+            var x = b[0],Nx=0,pos=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
             }
             console.log("Number of SWCNT 's = ", n);
 
