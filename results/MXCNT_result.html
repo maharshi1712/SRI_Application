@@ -109,7 +109,7 @@
 <body style="width: 100%;">
     <div class="contain">
         <div class="head" text-align:center ">
-            <h1 class="text-4xl ">Mixed CNT</h1>
+            <h1 class="text-4xl ">Mixed Carbon Nantube Bundle Interconnect</h1>
         </div>
         <div class="table-content ">
             <table class="min-w-full divide-y divide-gray-200 ">
@@ -258,8 +258,8 @@
         <div class="mycanva ">
             <h3 class="row " style="margin-bottom: 50px; ">Structure of Mixed CNT :</h3>
             <canvas id="myCanvas " style="border: 1.5px solid rgb(63, 63, 63); text-align: center; ">
-            Your browser does not support the canvas element.
-          </canvas>
+                Your browser does not support the canvas element.
+            </canvas>
         </div>
         <div class="equation-head " style="text-align:center; ">
             <h1>Equations</h1>
@@ -486,26 +486,49 @@
                 }
             }
         }
-        if(str === "mcb3 "){
-                         var a = [],
+        if(str === "mcb3"){
+            var a = [],
                 b = [];
             var r = d / 2;
             var x = r,
                 y = r;
-            var n = 0,
-                j = 1;
-            while (y + r <= t) {
-                while (x + r <= w/2) {
-                    a.push(x);
-                    b.push(y);
-                    n++;
-                    x = x + d;
-                }
-                j++;
-                if (j % 2 === 0) x = d + 0.17;
-                else x = r;
-                y = y + r * Math.sqrt(3) + 0.17;
+            var n = 0;
+
+            while(x+r<=w){
+                a.push(x);
+                b.push(y);
+                x = x + d;
+                n++;
             }
+            x=x - d;
+            y=y+ r * Math.sqrt(3) + 0.34;
+            while(y+r<=t){
+                a.push(x);
+                b.push(y);
+                y = y + r*Math.sqrt(3)+0.34;
+                n++;
+            }
+            y=y-r*Math.sqrt(3)-0.34;
+            x = x - d ;
+            while(x-r>=0){
+                a.push(x);
+                b.push(y);
+                x = x - d ;
+                n++;
+            }
+            
+            if(x<0){
+                x=a[n-1];
+                y= y - r * Math.sqrt(3) - 0.34;
+            }
+            console.log(x,y);
+            while(y-r>=r){
+                a.push(x);
+                b.push(y);
+                y = y - r*Math.sqrt(3)-0.34;
+                n++;
+            }
+            console.log(a,b);
 
             var x = b[0],Nx=0,pos=0;
             for(var i=0;i<=b.length;i++){
@@ -515,8 +538,6 @@
                     Nx++;
                 }
             }
-            console.log("Number of SWCNT 's = ", n);
-
             var canvas = document.getElementById("myCanvas ");
             canvas.setAttribute("width", w * 20);
             canvas.setAttribute("height", t * 20);
@@ -524,43 +545,104 @@
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
-
             for (var i = 0; i < n; i++) {
-                // ctx.moveTo(a[i] * 20, b[i] * 20);
                 ctx.beginPath();
                 ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
-                // ctx.fill();
                 ctx.stroke();
             }
 
+            var maxX = Math.max(...a);
+            var maxY = Math.max(...b);
+
+            var a = [],
+                b = [];
+            var r = d / 2;
+            var x = r*3,
+                y = r*3;
+            var n = 0;
+
+            while(x+r<=maxX){
+                a.push(x);
+                b.push(y);
+                x = x + d;
+                n++;
+            }
+            x=x - d;
+            y=y+ r * Math.sqrt(3) + 0.34;
+            while(y+r<=maxY){
+                a.push(x);
+                b.push(y);
+                y = y + r*Math.sqrt(3)+0.34;
+                n++;
+            }
+            y=y-r*Math.sqrt(3)-0.34;
+            x = x - d ;
+            while(x-r>=d+r){
+                a.push(x);
+                b.push(y);
+                x = x - d ;
+                n++;
+            }
+            
+            if(x<0){
+                x=a[n-1];
+                y= y - r * Math.sqrt(3) - 0.34;
+            }
+            console.log(x,y);
+            while(y-r>=d){
+                a.push(x);
+                b.push(y);
+                y = y - r*Math.sqrt(3)-0.34;
+                n++;
+            }
+            console.log(a,b);
+
+            var x = b[0],Nx=0,pos=0;
+            for(var i=0;i<=b.length;i++){
+                if(b[i]!==x){
+                    break;
+                }else{
+                    Nx++;
+                }
+            }
+            for (var i = 0; i < n; i++) {
+                ctx.beginPath();
+                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
+                ctx.stroke();
+            }
+
+            var maxX = Math.max(...a);
+            var maxY = Math.max(...b);
+
+            var dm = dmin + 2 * 0.34 * (no - 1);
             var c = [],
                 e = [];
-            var dm = dmin + 2 * 0.34 * (no - 1);
             var r = dm / 2;
-            var x = w/2+no*0.34;
-                y = r;
-            var nm = 0,
+            var x = 4*(d/2)+r+0.17,
+                y = 4*(d/2)+r+0.17;
+            var n = 0,
                 j = 1;
-            while (y + r <= t) {
-                while (x + r <= w) {
+            while (y + r <= maxY-d/2) {
+                while (x + r <= maxX-d/2) {
                     c.push(x);
                     e.push(y);
-                    nm++;
-                    x = x + dm + 0.34;
+                    n++;
+                    x = x + dm + 0.17;
                 }
                 j++;
-                if (j % 2 === 0) x = w/2 +0.34+ no*0.17;
-                else x = w/2+no*0.34;
-                y = y + r * Math.sqrt(3) + 0.34;
+                if (j % 2 === 0) x = r + 4*(d/2) +r+0.17;
+                else x = 4*(d/2)+r+0.17;
+                y = y + r * Math.sqrt(3)+ 0.34;
             }
-            for (var i = 0; i < nm; i++) {
-                for (var j = 1; j < no + 1; j++) {
-                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
-                    ctx.beginPath();
-                    ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
-                    ctx.stroke();
-                }
+
+            for (var i = 0; i < n; i++) {
+            for (var j = 1; j < no + 1; j++) {
+                var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                ctx.beginPath();
+                ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
+                ctx.stroke();
             }
+        }
         }
         if(str === "mcb4"){
             var dm = dmin + 2 * 0.34 * (no - 1);
@@ -664,7 +746,7 @@
             }
 
         }
-        if(str === "mcb5 "){
+        if(str === "mcb5"){
             var dm = dmin + 2 * 0.34 * (no - 1);
             var a = [],
                 b = [];
@@ -752,81 +834,8 @@
             }
         }
 
-        if(str === "mcb6 "){
-            var a = [],
-                b = [];
-            var r = d / 2;
-            var x = r,
-                y = r;
-            var n = 0,
-                j = 1;
-            while (y + r <= t) {
-                while (x + r <= w/2) {
-                    a.push(x);
-                    b.push(y);
-                    n++;
-                    x = x + d;
-                }
-                j++;
-                if (j % 2 === 0) x = d + 0.17;
-                else x = r;
-                y = y + r * Math.sqrt(3) + 0.17;
-            }
-
-            var x = b[0],Nx=0,pos=0;
-            for(var i=0;i<=b.length;i++){
-                if(b[i]!==x){
-                    break;
-                }else{
-                    Nx++;
-                }
-            }
-            console.log("Number of SWCNT 's = ", n);
-
-            var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width", w * 20);
-            canvas.setAttribute("height", t * 20);
-            var ctx = canvas.getContext("2d");
-            ctx.translate(0, canvas.height);
-            ctx.scale(1, -1);
-
-
-            for (var i = 0; i < n; i++) {
-                // ctx.moveTo(a[i] * 20, b[i] * 20);
-                ctx.beginPath();
-                ctx.arc(a[i] * 20, b[i] * 20, d * 10, 0, 2 * Math.PI, true);
-                // ctx.fill();
-                ctx.stroke();
-            }
-
-            var c = [],
-                e = [];
-            var dm = dmin + 2 * 0.34 * (no - 1);
-            var r = dm / 2;
-            var x = w/2+no*0.34;
-                y = r;
-            var nm = 0,
-                j = 1;
-            while (y + r <= t) {
-                while (x + r <= w) {
-                    c.push(x);
-                    e.push(y);
-                    nm++;
-                    x = x + dm + 0.34;
-                }
-                j++;
-                if (j % 2 === 0) x = w/2 +0.34+ no*0.17;
-                else x = w/2+no*0.34;
-                y = y + r * Math.sqrt(3) + 0.34;
-            }
-            for (var i = 0; i < nm; i++) {
-                for (var j = 1; j < no + 1; j++) {
-                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
-                    ctx.beginPath();
-                    ctx.arc(c[i] * 20, e[i] * 20, m * 20, 0, 2 * Math.PI);
-                    ctx.stroke();
-                }
-            }
+        if(str === "mcb6"){
+            
         }
 
 
