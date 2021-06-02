@@ -751,21 +751,21 @@
             var a = [],
                 b = [];
             var r = dm / 2;
-            var x = r+(no+1)*0.2,
-                y = r+(no+1)*0.21;
+            var x = r + 0.17,
+                y = r + 0.17;
             var n = 0,
                 j = 1;
             while (y + r <= t) {
-                while (x + r <= w/2) {
+                while (x + r <= w/2+r) {
                     a.push(x);
                     b.push(y);
                     n++;
-                    x = x + dm + (no+1)*0.34;
+                    x = x + dm + 0.17;
                 }
                 j++;
-                if (j % 2 === 0) x = dm + (no-1)*0.34;
-                else x = r+(no+1)*0.2;
-                y = y + r * Math.sqrt(3) + (no+1)*0.4;
+                if (j % 2 === 0) x = r + dmin + (no-1)*0.34;
+                else x = r+0.17;
+                y = y + r * Math.sqrt(3) + 0.17;
             }
 
             var x = b[0],Nx=0,pos=0;
@@ -781,15 +781,15 @@
             console.log(lastIndex);
 
             var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width ", w * 20);
-            canvas.setAttribute("height ", t * 20);
-            var ctx = canvas.getContext("2d ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
             for (var i = 0; i < n; i++) {
                 for (var j = 1; j < no + 1; j++) {
-                    var m = (dm + 2 * 0.34 * (j - 1)) / 2;
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
                     ctx.beginPath();
                     ctx.arc(a[i] * 20, b[i] * 20, m * 20, 0, 2 * Math.PI);
                     ctx.stroke();
