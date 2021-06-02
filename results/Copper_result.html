@@ -330,10 +330,10 @@
 
         //Capacitance 
         var c1 = (w/hg)+(2.22)*Math.pow(s/(s+(0.7*hg)),3.19)+1.17*Math.pow(s/(s+(1.51*hg)),0.76)*Math.pow(h/(h+(4.53*hg)),0.12);
-        var Cg = 6*c1*8.85*Math.pow(10,-12);
+        var Cg = 2.2*c1*8.85*Math.pow(10,-12);
         document.getElementById("capacitanceG ").innerHTML = Cg+" F";
         var c2 = 1.14*(h/s)*Math.pow(hg/(hg+(2.06*s)),0.09)+(0.74*Math.pow(w/(w+1.59*s),1.14)+(1.16*Math.pow(w/(w+1.87*s),0.16)*Math.pow(hg/(hg+(0.98*s)),1.18)));
-        var Cc = 6.1*c2*8.85*Math.pow(10,-12);
+        var Cc = 2.2*c2*8.85*Math.pow(10,-12);
         document.getElementById("capacitanceC ").innerHTML = Cc+" F";
         document.getElementById("capacitance ").innerHTML = (2*Cc)+Cg+" F";
 
