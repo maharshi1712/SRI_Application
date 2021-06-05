@@ -276,12 +276,15 @@
         document.getElementById("s ").innerHTML = s+" nm ";
     
         var N = 1 + Math.floor(t/0.34);
-
+        var e = 1.6*Math.pow(10,-19);
+        var alpha = 1.2/(e*Math.pow(10,-9));
+        var Ef = 0.2*e;
+        var Nch = alpha*w*Ef;
         //Resistance............................................................
     
         
         //Capacitance 
-     
+        
 
         //Inductance.............................................................
      
