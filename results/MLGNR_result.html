@@ -160,7 +160,7 @@
                 <tbody class=" divide-y divide-gray-200 ">
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Width (W)
+                            Width (w)
                         </td>
                         <td id="w " class="px-6 py-4 whitespace-nowrap ">
                             10mm
@@ -168,7 +168,7 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Thikness (H)
+                            Thikness (t)
                         </td>
                         <td id="t " class="px-6 py-4 whitespace-nowrap ">
                             10mm
@@ -184,17 +184,27 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Height abov ground (Hg)
+                            Height abov ground (d)
                         </td>
                         <td id="hg " class="px-6 py-4 whitespace-nowrap ">
                             20
                         </td>
                     </tr>
+
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Spacular Constant (P)
+                            Number of Layers (N)
                         </td>
-                        <td id="p " class="px-6 py-4 whitespace-nowrap ">
+                        <td id="n " class="px-6 py-4 whitespace-nowrap ">
+                            20
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of Conduction Channels (N<sub>ch</sub>)
+                        </td>
+                        <td id="nch " class="px-6 py-4 whitespace-nowrap ">
                             20
                         </td>
                     </tr>
@@ -209,17 +219,50 @@
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Inductance (L)
+                            L<sub>k_ESC</sub>
                         </td>
-                        <td id="inductance " class="px-6 py-4 whitespace-nowrap ">
+                        <td id="inductanceK " class="px-6 py-4 whitespace-nowrap ">
                             20 L
                         </td>
                     </tr>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap ">
-                            Capacitance (C)
+                            L<sub>m_ESC</sub>
+                        </td>
+                        <td id="inductanceM " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                           Total Inductance (L)
                         </td>
                         <td id="inductance " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            C<sub>q_ESC</sub>
+                        </td>
+                        <td id="capacitanceQ " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            C<sub>e_ESC</sub>
+                        </td>
+                        <td id="capacitanceE " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Total Capacitance (C)
+                        </td>
+                        <td id="capacitance " class="px-6 py-4 whitespace-nowrap ">
                             20 L
                         </td>
                     </tr>
@@ -257,38 +300,62 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js " type="text/javascript "></script>
     <script src="https://nosir.github.io/obelisk.js/dist/obelisk.min.1.0.2.js " type="text/javascript "></script> 
     <script src="https://nosir.github.io/obelisk.js/dist/obelisk.min.1.0.2.js " type="text/javascript "></script>
-    <script src="./temp.js " type="text/javascript "></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js "></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js "></script>
    
     <script type="module ">
-       /* var url_string = window.location.href;
+        var url_string = window.location.href;
         var url = new URL(url_string);
-        var w = Number(url.searchParams.get("w "));
-        var t = Number(url.searchParams.get("t "));
-        var l = Number(url.searchParams.get("l "));
-        var hg = Number(url.searchParams.get("hg "));
-        var s = Number(url.searchParams.get("s "));
+        var w = Number(url.searchParams.get("w"));
+        var t = Number(url.searchParams.get("h"));
+        var l = Number(url.searchParams.get("l"));
+        var hg = Number(url.searchParams.get("hg"));
         document.getElementById("w ").innerHTML = w+" nm ";
         document.getElementById("t ").innerHTML = t+" nm ";
         document.getElementById("l ").innerHTML = l+" nm ";
         document.getElementById("hg ").innerHTML = hg+" nm ";
-        document.getElementById("s ").innerHTML = s+" nm ";
+        
     
         var N = 1 + Math.floor(t/0.34);
+        console.log("N = ",N);
+        document.getElementById("n ").innerHTML = N;
         var e = 1.6*Math.pow(10,-19);
         var alpha = 1.2/(e*Math.pow(10,-9));
         var Ef = 0.2*e;
-        var Nch = alpha*w*Ef;
+        var Nch = alpha*w*Ef*Math.pow(10,-9);
+        document.getElementById("nch ").innerHTML = Nch;
+        console.log("Nch = ",Nch);
+
+
         //Resistance............................................................
     
         
-        //Capacitance 
-        
+        //Capacitance...........................................................
+        var Ce_ESC = (19.47*Math.pow(10,-12)*w)/hg;
+        console.log("Ce_ESC = ",Ce_ESC);
+        document.getElementById("capacitanceE ").innerHTML = Ce_ESC+" F";
+        var Cl = (8.85*Math.pow(10,-12)*w)/hg;
+        var Cq = 0.19*Math.pow(10,-9)*Nch;
+        var Cx = (1/Cq)+(hg/(Math.pow(10,-12)*19.47*w));
+        var Cres_i = Cq + (1/Cx);
+        var Cq_ESC = N*Cres_i;
+        console.log("Cq_ESC = ",Cq_ESC);
+        document.getElementById("capacitanceQ ").innerHTML = Cq_ESC+" F";
+        var Cdis = (Cq_ESC*Ce_ESC)/(Ce_ESC+Cq_ESC);
+        console.log("Cdis = ", Cdis);
+        document.getElementById("capacitance ").innerHTML = Cdis+" F";
+
 
         //Inductance.............................................................
-     
-        </script>
+        var mu = 4*3.14*Math.pow(10,-7);
+        var Lm = (mu*hg)/w;
+        document.getElementById("inductanceM ").innerHTML = Lm+" H";
+        var Lk = 0.008088/(Nch*N);
+        document.getElementById("inductanceK ").innerHTML = Lk+" H";
+        var Ldis = Lk + Lm;
+        document.getElementById("inductance ").innerHTML = Ldis+" H";
+        console.log("Ldis = ",Ldis);
+    </script>
 </body>
 
 </html>
