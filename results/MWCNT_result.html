@@ -35,7 +35,7 @@
             justify-content: center;
             align-items: center;
             background-color: aquamarine;
-            border-bottom:1px solid grey;
+            border-bottom: 1px solid grey;
         }
         
         .table-content {
@@ -50,7 +50,7 @@
         .mycanva {
             grid-area: canvas;
             margin-top: 100px;
-            display:flex;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -59,46 +59,46 @@
         .equation-head {
             grid-area: equation;
             height: 100px;
-            margin-top:50px;
-            border:0.5px solid;
-            padding-top:10px;   
+            margin-top: 50px;
+            border: 0.5px solid;
+            padding-top: 10px;
         }
         
         .equation {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding:100px;
-            flex-direction:column;
-            flex-wrap:wrap;
+            padding: 100px;
+            flex-direction: column;
+            flex-wrap: wrap;
         }
         
         .numberOfSWCNT {
             grid-area: number;
-            border:0.5px solid;
+            border: 0.5px solid;
             display: flex;
         }
         
         .resOfSWCNT {
             grid-area: res;
-            border:0.5px solid;
+            border: 0.5px solid;
         }
         
         .indOfSWCNT {
             grid-area: ind;
-            border:0.5px solid;
+            border: 0.5px solid;
         }
         
         .capcOfSWCNT {
             grid-area: capc;
-            border:0.5px solid;
+            border: 0.5px solid;
         }
-
+        
         @media only screen and (max-width: 600px) {
-            .contain{
+            .contain {
                 grid-template-areas: "head" "table" "canvas" "equation" "number" "res" "ind" "capc";
             }
-            .equation{
+            .equation {
                 flex-direction: column;
             }
         }
@@ -220,11 +220,11 @@
         </div>
         <div class="equation resOfSWCNT ">
             <h3>Resistance : </h3>
-            <img src="../assets/img/resMWCNT.gif" alt=" ">
+            <img src="../assets/img/resMWCNT.gif " alt=" ">
         </div>
         <div class="equation indOfSWCNT ">
             <h3>Inducatance : </h3>
-            <img src="../assets/img/induMWCNT.gif" alt=" ">
+            <img src="../assets/img/induMWCNT.gif " alt=" ">
         </div>
         <div class="equation capcOfSWCNT ">
             <h3>Capacitance : </h3>
@@ -235,12 +235,12 @@
     <script>
         var url_string = window.location.href;
         var url = new URL(url_string);
-        var w = Number(url.searchParams.get("w"));
+        var w = Number(url.searchParams.get("w "));
         console.log(typeof w);
-        var t = Number(url.searchParams.get("t"));
-        var dl = Number(url.searchParams.get("d"));
-        var no = Number(url.searchParams.get("n"));
-        var hg = Number(url.searchParams.get("hg"));
+        var t = Number(url.searchParams.get("t "));
+        var dl = Number(url.searchParams.get("d "));
+        var no = Number(url.searchParams.get("n "));
+        var hg = Number(url.searchParams.get("hg "));
         document.getElementById("w ").innerHTML = w;
         document.getElementById("t ").innerHTML = t;
         document.getElementById("d ").innerHTML = dl;
@@ -252,12 +252,12 @@
         var a = [],
             b = [];
         var r = d / 2;
-        var x = r,
-            y = r;
+        var x = r+0.34,
+            y = r+0.34;
         var n = 0,
             j = 1;
-        while (y + r <= t) {
-            while (x + r <= w) {
+        while (y + r <= t-0.34) {
+            while (x + r <= w-0.34) {
                 a.push(x);
                 b.push(y);
                 n++;
@@ -265,7 +265,7 @@
             }
             j++;
             if (j % 2 === 0) x = d ;
-            else x = r;
+            else x = r+0.34;
             y = y + r * Math.sqrt(3)+ 0.17;
         }
         document.getElementById("mwcnt ").innerHTML = n;

@@ -21,7 +21,7 @@
             display: grid;
             grid-template-areas: "head head" "table canvas" "equation equation" "number res" "ind capc";
             width: 100%;
-            grid-gap:5px;
+            grid-gap: 5px;
         }
         
         .head {
@@ -32,7 +32,7 @@
             justify-content: center;
             align-items: center;
             background-color: aquamarine;
-            border-bottom:1px solid grey;
+            border-bottom: 1px solid grey;
         }
         
         .table-content {
@@ -42,51 +42,56 @@
             justify-content: center;
             align-items: center;
             background-color: azure;
-            border:0.5px solid;
+            border: 0.5px solid;
         }
         
         .mycanva {
             grid-area: canvas;
             margin-top: 100px;
-            display:flex;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border:0.4px solid;
         }
-        .equation-head{
-            grid-area:equation;
-            height:100px;
-            margin-top:50px;
-            border:0.8px solid;
-            padding-top:10px;
+        
+        .equation-head {
+            grid-area: equation;
+            height: 100px;
+            margin-top: 50px;
+            border: 0.8px solid;
+            padding-top: 10px;
         }
-        .equation{
+        
+        .equation {
             display: flex;
             justify-content: center;
-            align-items:center;
-            flex-direction:column;
+            align-items: center;
+            flex-direction: column;
             flex-wrap: wrap;
         }
-
-        .numberOfSWCNT{
-            grid-area:number;
-            border:0.5px solid;
+        
+        .numberOfSWCNT {
+            grid-area: number;
+            border: 0.5px solid;
         }
-        .resOfSWCNT{
-            grid-area:res;
-            border:0.5px solid;
+        
+        .resOfSWCNT {
+            grid-area: res;
+            border: 0.5px solid;
         }
-        .indOfSWCNT{
-            grid-area:ind;
-            border:0.5px solid;
+        
+        .indOfSWCNT {
+            grid-area: ind;
+            border: 0.5px solid;
         }
-        .capcOfSWCNT{
-            grid-area:capc;
-            border:0.5px solid;
-        }   
+        
+        .capcOfSWCNT {
+            grid-area: capc;
+            border: 0.5px solid;
+        }
+        
         @media only screen and (max-width: 600px) {
-            .contain{
+            .contain {
                 grid-template-areas: "head" "table" "canvas" "equation" "number" "res" "ind" "capc";
             }
         }
@@ -205,7 +210,7 @@
             <img src="../assets/img/CapacitanceSWCNT.gif" alt="">
         </div>
     </div>
-    
+
 
     <script>
         var url_string = window.location.href;
@@ -223,12 +228,12 @@
         var a = [],
             b = [];
         var r = d / 2;
-        var x = r,
-            y = r;
+        var x = r + 0.34,
+            y = r + 0.34;
         var n = 0,
             j = 1;
-        while (y + r <= t) {
-            while (x + r <= w) {
+        while (y + r <= t - 0.34) {
+            while (x + r <= w - 0.34) {
                 a.push(x);
                 b.push(y);
                 n++;
@@ -236,8 +241,8 @@
             }
             j++;
             if (j % 2 === 0) x = d + 0.17;
-            else x = r;
-            y = y + r * Math.sqrt(3) + 0.17;
+            else x = r + 0.34;
+            y = y + r * Math.sqrt(3) + 0.34;
         }
         document.getElementById("swcnt ").innerHTML = n;
         console.log("Number of SWCNT 's = ", n);

@@ -371,12 +371,12 @@
                 e = [];
             var dm = dmin + 2 * 0.34 * (no - 1);
             var r = dm / 2;
-            var x = a[n-1]+(no*(0.34))+d/2+dmin/2+0.17;
+            var x = a[n-1]+((no-1)*(0.34))+d/2+dmin/2+0.17;
                 y = r+0.4;
             var nm = 0,
                 j = 1;
-            while (x + r <= w) {
-                while (y + r <= t) {
+            while (x + r <= w-0.17) {
+                while (y + r <= t-0.17) {
                     c.push(x);
                     e.push(y);
                     nm++;
@@ -385,7 +385,7 @@
                 j++;
                 if (j % 2 === 0) y = dm+0.34*(no-1);
                 else y=r+0.34;
-                x = x + dmin*2+0.34*(no);
+                x = x + dmin*2+0.34*(no-1);
             }
             
             Nx=Nx+Math.floor((c[nm-1]-a[n-1]-(d/2)+r)/(dm));
@@ -741,7 +741,7 @@
                     a.push(x);
                     b.push(y);
                     n++;
-                    y = y + r * Math.sqrt(3) + 0.17*(no-1);
+                    y = y + r * Math.sqrt(3) + 0.34*(no-1);
                 }
                 j++;
                 if (j % 2 === 0) y = r + 0.34*(no);
@@ -804,9 +804,6 @@
 
         }
 
-        if(str === "mcb6"){
-            
-        }
 
 
         //Ncnt.......

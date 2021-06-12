@@ -322,13 +322,22 @@
         var e = 1.6*Math.pow(10,-19);
         var alpha = 1.2/(e*Math.pow(10,-9));
         var Ef = 0.2*e;
-        var Nch = alpha*w*Ef*Math.pow(10,-9);
+        var Nch = Math.ceil(alpha*w*Ef*Math.pow(10,-9));
         document.getElementById("nch ").innerHTML = Nch;
         console.log("Nch = ",Nch);
 
 
         //Resistance............................................................
-    
+        var resistance = 0;
+        console.log("Lambda_i = ");
+        for(var i=1;i<=N;i++){
+            var x = Math.pow((2*w*(0.2)*10)/(i*(6.626)*8), 2) - 1;
+            var lambda = 2*w*Math.sqrt(Math.abs(x))*Math.pow(10,-9);
+            console.log(lambda);
+            resistance = resistance + (12.9/(Nch*lambda*N)); 
+        }
+        console.log("resistance = ", resistance);
+        document.getElementById("register ").innerHTML = resistance+ " K\u2126";
         
         //Capacitance...........................................................
         var Ce_ESC = (19.47*Math.pow(10,-12)*w)/hg;
