@@ -306,28 +306,45 @@
         document.getElementById("n ").innerHTML = no;
         document.getElementById("hg ").innerHTML = hg;
         document.getElementById("dmin ").innerHTML = dmin;
+ 
+        if(str==="mcb1 "){
+            document.getElementById("str ").innerHTML = "MCB-I ";
+        }
+        if(str==="mcb2 "){
+            document.getElementById("str ").innerHTML = "MCB-II ";
+        }
+        if(str==="mcb3 "){
+            document.getElementById("str ").innerHTML = "MCB-III ";
+        }
+        if(str==="mcb4 "){
+            document.getElementById("str ").innerHTML = "MCB-IV ";
+        }
+        if(str==="mcb5 "){
+            document.getElementById("str ").innerHTML = "MCB-V ";
+        }
+        if(str==="mcb6 "){
+            document.getElementById("str ").innerHTML = "MCB-VI ";
+        }
 
-        if(str==="mcb1"){
-            document.getElementById("str ").innerHTML = "MCB-I";
+        //Ncnt......................................................................................
+        var Ncnt;
+        var Nw = Math.floor((w-dmin)/(dmin+0.34))+1;
+        var Nh = Math.floor((t-dmin)/((Math.sqrt(3)/2)*(dmin+0.34)))+1;
+        
+        if(Nh%2 == 0){
+            Ncnt = Nw*Nh-(Nh/2);
+        }else{
+            Ncnt = Nw*Nh-((Nh-1)/2);
         }
-        if(str==="mcb2"){
-            document.getElementById("str ").innerHTML = "MCB-II";
-        }
-        if(str==="mcb3"){
-            document.getElementById("str ").innerHTML = "MCB-III";
-        }
-        if(str==="mcb4"){
-            document.getElementById("str ").innerHTML = "MCB-IV";
-        }
-        if(str==="mcb5"){
-            document.getElementById("str ").innerHTML = "MCB-V";
-        }
-        if(str==="mcb6"){
-            document.getElementById("str ").innerHTML = "MCB-VI";
-        }
+        document.getElementById("ncnt ").innerHTML = Ncnt;
+        console.log("Nw=",Nw," Nh=",Nh," Ncnt=",Ncnt);
+
+        var dmax = dmin + 2*0.34*(no-1);
+        var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
+        console.log(" dmax=",dmax," Nshell=",Nshell);
 
         //canvas...............................................................................
-         if(str === "mcb1"){
+         if(str === "mcb1 "){
              var a = [],
                 b = [];
             var r = d / 2;
@@ -431,10 +448,10 @@
 
             console.log("Number of SWCNT 's=", n);
 
-            var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width", w * 20);
-            canvas.setAttribute("height", t * 20);
-            var ctx = canvas.getContext("2d");
+            var canvas = document.getElementById(" myCanvas ");
+            canvas.setAttribute("width ", w * 20);
+            canvas.setAttribute("height ", t * 20);
+            var ctx = canvas.getContext("2d ");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
@@ -480,7 +497,7 @@
             console.log(Nx);
 
         }
-        if(str === "mcb3"){
+        if(str === "mcb3 "){
             var a = [],
                 b = [];
             var r = d / 2;
@@ -526,9 +543,9 @@
             }
 
             var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width", w * 20);
-            canvas.setAttribute("height", t * 20);
-            var ctx = canvas.getContext("2d");
+            canvas.setAttribute("width ", w * 20);
+            canvas.setAttribute("height ", t * 20);
+            var ctx = canvas.getContext("2d ");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
@@ -623,7 +640,7 @@
             console.log(Nx);
 
         }
-        if(str === "mcb4"){
+        if(str === "mcb4 "){
             var dm = dmin + 2 * 0.34 * (no - 1);
             var a = [],
                 b = [];
@@ -677,9 +694,9 @@
                 }
             }
             var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width", w * 20);
-            canvas.setAttribute("height", t * 20);
-            var ctx = canvas.getContext("2d");
+            canvas.setAttribute("width ", w * 20);
+            canvas.setAttribute("height ", t * 20);
+            var ctx = canvas.getContext("2d ");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
@@ -727,7 +744,7 @@
 
         }
 
-        if(str === "mcb5"){
+        if(str === "mcb5 "){
             var dm = dmin + 2 * 0.34 * (no - 1);
             var a = [],
                 b = [];
@@ -755,9 +772,9 @@
             var lastIndex = Math.max(...a);
 
             var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width", w * 20);
-            canvas.setAttribute("height", t * 20);
-            var ctx = canvas.getContext("2d");
+            canvas.setAttribute("width ", w * 20);
+            canvas.setAttribute("height ", t * 20);
+            var ctx = canvas.getContext("2d ");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
@@ -791,7 +808,7 @@
             }
 
             Nx = Nx + Math.floor((c[ns-1]-a[n-1]-(dm/2)+r)/(d));
-            console.log("Nx = ",Nx);
+            console.log("Nx=",Nx);
 
             for (var i = 0; i < ns; i++) {
                 // ctx.moveTo(a[i] * 20, b[i] * 20);
@@ -804,24 +821,54 @@
 
         }
 
+        if(str === "mcb6"){
+            var circles = [];
+            var protection = 0;
+            while(circles.length < Ncnt/4){
+                var circle = {
+                    x: Math.random()*w-(dmin+2*0.34*(no - 1)),
+                    y: Math.random()*t-(dmin+2*0.34*(no - 1)),
+                    r: dmin/2
+                }
+                var overlapping = false;
+                for(var i=0; j< circles.length; i++){
+                    var other = circles[i];
+                    var d = dist(circle.x, circle.y, other.x, other.y);
+                    if(d < circle.r + other.r){
+                        overlapping = true;
+                        break;
+                    }
+                }
+                protection++;
+                if(protection > 10000){
+                    break;
+                }
+                if(!overlapping){
+                    circles.push(circle);
+                }
+            }
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
 
+            for (var i = 0; i < circles.length; i++) {
+                for (var j = 1; j < no + 1; j++) {
+                    var m = (dmin + 2 * 0.34 * (j - 1)) / 2;
+                    ctx.beginPath();
+                    ctx.arc(circles[i].x * 20, circles[i].y * 20, m * 20, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+            }
 
-        //Ncnt.......
-        var Ncnt;
-        var Nw = Math.floor((w-dmin)/(dmin+0.34))+1;
-        var Nh = Math.floor((t-dmin)/((Math.sqrt(3)/2)*(dmin+0.34)))+1;
-        
-        if(Nh%2 == 0){
-            Ncnt = Nw*Nh-(Nh/2);
-        }else{
-            Ncnt = Nw*Nh-((Nh-1)/2);
+            var Nx = Nw;
         }
-        document.getElementById("ncnt ").innerHTML = Ncnt;
-        console.log("Nw=",Nw,"Nh=",Nh,"Ncnt=",Ncnt);
 
-        var dmax = dmin + 2*0.34*(no-1);
-        var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
-        console.log("dmax=",dmax,"Nshell=",Nshell);
+
+
+        
 
         //Nchannels............................................................................
        var Nch=0;
@@ -852,7 +899,7 @@
         }
         resistance1 = Ncnt*(1/(res1*1000));
         console.log(resistance1);
-        document.getElementById("register1 ").innerHTML = (resistance1/1000).toFixed(3)+" K\u2126";
+        document.getElementById("register1 ").innerHTML = (resistance1/1000).toFixed(3)+" K\u2126 ";
 
         for(var i=1; i<=Nshell; i++){
             var Nchi;
@@ -868,32 +915,32 @@
         }
         resistance2 = Ncnt*(1/res2);
         console.log(resistance2);
-        document.getElementById("register2 ").innerHTML = (resistance2/1000).toFixed(3)+" K\u2126";
+        document.getElementById("register2 ").innerHTML = (resistance2/1000).toFixed(3)+" K\u2126 ";
 
         //Capacitance............................................................................
         var Cq,Cqo=9.5*Math.pow(10,-11);
         Cq = 2*Cqo*Ntotal;
         console.log(Cq);
-        document.getElementById("capacitanceQ ").innerHTML = (Cq)+" F";
+        document.getElementById("capacitanceQ ").innerHTML = (Cq)+" F ";
 
         var Ce = (2*3.14*2.2*8.85*Math.pow(10,-12)*Nx)/Math.acosh((dmax+(2*hg))/dmax);
         console.log(Ce);
-        document.getElementById("capacitanceE ").innerHTML = Ce+" F";
+        document.getElementById("capacitanceE ").innerHTML = Ce+" F ";
 
         var C = (Cq*Ce)/(Cq+Ce);
-        document.getElementById("capacitanceT ").innerHTML = C+" F";
+        document.getElementById("capacitanceT ").innerHTML = C+" F ";
 
         //Inductance................................................................................
         var e = 1.6*Math.pow(10, -19)
         var Lk0 = 6.626*Math.pow(10, -34)/(2*e*e*8*Math.pow(10,5));
         var Lk = Lk0/(2*Ntotal);
-        document.getElementById("inductanceK ").innerHTML = Lk+" H";
+        document.getElementById("inductanceK ").innerHTML = Lk+" H ";
 
         var Lm = (2/Nx)*Math.pow(10,-7)*Math.log((dmax+(2*hg))/dmax);
-        document.getElementById("inductanceM ").innerHTML = Lm+" H";
+        document.getElementById("inductanceM ").innerHTML = Lm+" H ";
 
         var L = Lk + Lm;
-        document.getElementById("inductanceT ").innerHTML = L+" H";
+        document.getElementById("inductanceT ").innerHTML = L+" H ";
 
     </script>
 </body>
