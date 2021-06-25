@@ -110,7 +110,7 @@
 <body style="width: 100%;">
     <div class="contain">
         <div class="head" text-align:center ">
-            <h1 class="text-4xl ">Mixed Carbon Nantube Bundle Interconnect</h1>
+            <h1 class="text-4xl ">Mixed Carbon Nanotube Bundle Interconnect</h1>
         </div>
         <div class="table-content ">
             <table class="min-w-full divide-y divide-gray-200 ">
@@ -308,23 +308,23 @@
         document.getElementById("hg ").innerHTML = hg;
         document.getElementById("dmin ").innerHTML = dmin;
  
-        if(str==="mcb1 "){
-            document.getElementById("str ").innerHTML = "MCB-I ";
+        if(str==="mcb1"){
+            document.getElementById("str ").innerHTML = "MCB-I";
         }
-        if(str==="mcb2 "){
-            document.getElementById("str ").innerHTML = "MCB-II ";
+        if(str==="mcb2"){
+            document.getElementById("str ").innerHTML = "MCB-II";
         }
-        if(str==="mcb3 "){
-            document.getElementById("str ").innerHTML = "MCB-III ";
+        if(str==="mcb3"){
+            document.getElementById("str ").innerHTML = "MCB-III";
         }
-        if(str==="mcb4 "){
-            document.getElementById("str ").innerHTML = "MCB-IV ";
+        if(str==="mcb4"){
+            document.getElementById("str ").innerHTML = "MCB-IV";
         }
-        if(str==="mcb5 "){
-            document.getElementById("str ").innerHTML = "MCB-V ";
+        if(str==="mcb5"){
+            document.getElementById("str ").innerHTML = "MCB-V";
         }
-        if(str==="mcb6 "){
-            document.getElementById("str ").innerHTML = "MCB-VI ";
+        if(str==="mcb6"){
+            document.getElementById("str ").innerHTML = "MCB-VI";
         }
 
         //Ncnt......................................................................................
@@ -342,10 +342,10 @@
 
         var dmax = dmin + 2*0.34*(no-1);
         var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
-        console.log(" dmax=",dmax," Nshell=",Nshell);
+        console.log("dmax=",dmax," Nshell=",Nshell);
 
         //canvas...............................................................................
-         if(str === "mcb1 "){
+         if(str === "mcb1"){
              var a = [],
                 b = [];
             var r = d / 2;
@@ -449,10 +449,10 @@
 
             console.log("Number of SWCNT 's=", n);
 
-            var canvas = document.getElementById(" myCanvas ");
-            canvas.setAttribute("width ", w * 20);
-            canvas.setAttribute("height ", t * 20);
-            var ctx = canvas.getContext("2d ");
+            var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
@@ -498,7 +498,7 @@
             console.log(Nx);
 
         }
-        if(str === "mcb3 "){
+        if(str === "mcb3"){
             var a = [],
                 b = [];
             var r = d / 2;
@@ -544,9 +544,9 @@
             }
 
             var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width ", w * 20);
-            canvas.setAttribute("height ", t * 20);
-            var ctx = canvas.getContext("2d ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
@@ -641,7 +641,7 @@
             console.log(Nx);
 
         }
-        if(str === "mcb4 "){
+        if(str === "mcb4"){
             var dm = dmin + 2 * 0.34 * (no - 1);
             var a = [],
                 b = [];
@@ -695,9 +695,9 @@
                 }
             }
             var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width ", w * 20);
-            canvas.setAttribute("height ", t * 20);
-            var ctx = canvas.getContext("2d ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
@@ -745,7 +745,7 @@
 
         }
 
-        if(str === "mcb5 "){
+        if(str === "mcb5"){
             var dm = dmin + 2 * 0.34 * (no - 1);
             var a = [],
                 b = [];
@@ -773,9 +773,9 @@
             var lastIndex = Math.max(...a);
 
             var canvas = document.getElementById("myCanvas ");
-            canvas.setAttribute("width ", w * 20);
-            canvas.setAttribute("height ", t * 20);
-            var ctx = canvas.getContext("2d ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
             ctx.translate(0, canvas.height);
             ctx.scale(1, -1);
 
@@ -828,8 +828,8 @@
 
             while(circles.length < Ncnt/4){
                 var circle = {
-                    x: (Math.random()*((w-((dmin+2*0.34*(no - 1))/2)) - ((dmin+2*0.34*(no - 1))/2) )) + ((dmin+2*0.34*(no - 1))/2),
-                    y: (Math.random()*((t-((dmin+2*0.34*(no - 1))/2)) - ((dmin+2*0.34*(no - 1))/2) )) + ((dmin+2*0.34*(no - 1))/2),
+                    x: (Math.random()*((w-((dmin+2*0.34*(no))/2)) - ((dmin+2*0.34*(no))/2) )) + ((dmin+2*0.34*(no))/2),
+                    y: (Math.random()*((t-((dmin+2*0.34*(no))/2)) - ((dmin+2*0.34*(no))/2) )) + ((dmin+2*0.34*(no))/2),
                     r: (dmin+2*0.34*(no - 1))/2
                 }
                 var overlapping = false;
@@ -842,7 +842,7 @@
                     }
                 }
                 protection++;
-                if(protection > 5000){
+                if(protection > 20000){
                     break;
                 }
                 if(overlapping==false){
@@ -869,7 +869,7 @@
             var circles2 = [];
             var protection = 0;
 
-            while(circles2.length < Ncnt/4){
+            while(circles2.length < Ncnt/2){
                 var circle = {
                     x: (Math.random()*((w-((dmin+2*0.34*(no - 1))/2)) - ((dmin+2*0.34*(no - 1))/2) )) + ((dmin+2*0.34*(no - 1))/2),
                     y: (Math.random()*((t-((dmin+2*0.34*(no - 1))/2)) - ((dmin+2*0.34*(no - 1))/2) )) + ((dmin+2*0.34*(no - 1))/2),
@@ -893,7 +893,7 @@
                     }
                 }
                 protection++;
-                if(protection > 6000){
+                if(protection > 20000){
                     break;
                 }
                 if(overlapping==false){
