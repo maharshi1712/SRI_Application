@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Result of Mixed CNT</title>
+    <title>Result of Optimized Mixed CNT</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="app.css" />
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
@@ -110,7 +110,7 @@
 <body style="width: 100%;">
     <div class="contain">
         <div class="head" text-align:center ">
-            <h1 class="text-4xl ">Mixed Carbon Nanotube Bundle Interconnect</h1>
+            <h1 class="text-4xl ">Optimization of Mixed Carbon Nanotube Bundle Interconnect</h1>
         </div>
         <div class="table-content ">
             <table class="min-w-full divide-y divide-gray-200 ">
@@ -378,11 +378,116 @@
                     }
                 }
             }
-            
 
+            var circles2 = [];
+            var protection = 0;
+
+            while(protection < 1000000){
+                var circle = {
+                    x: (Math.random()*((w-((dmin+2*0.34*(no))/2)) - ((dmin+2*0.34*(no))/2) )) + ((dmin+2*0.34*(no))/2),
+                    y: (Math.random()*((t-((dmin+2*0.34*(no))/2)) - ((dmin+2*0.34*(no))/2) )) + ((dmin+2*0.34*(no))/2),
+                    r: 0.34/2
+                }
+                var overlapping = false;
+
+                for(var i=0; i < circles.length; i++){
+                    for(var j=0;j<circles[i].length;j++){
+                        var other = circles[i][j];
+                        var d1 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                        if(d1 < circle.r + other.r +  0.2){
+                             overlapping = true;
+                             i=circle.length;
+                             break;
+                        }
+                    }
+                }
+                
+                for(var i=0; i < circles2.length; i++){
+                    var other = circles2[i];
+                    var d1 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                    if(d1 < circle.r + other.r + 0.34){
+                        overlapping = true;
+                        break;
+                    }
+                }
+                protection++;
+                if(overlapping==false){
+                    circles2.push(circle);
+                }
+            }
+            for (var i = 0; i < circles2.length; i++) {
+                ctx.beginPath();
+                ctx.arc(circles2[i].x * 20, circles2[i].y * 20, 0.7 * 10, 0, 2 * Math.PI, true);
+                ctx.stroke();
+            }
+
+
+            var circles3 = [];
+            var protection = 0;
+
+            while(protection < 1000000){
+                var circle = {
+                    x: (Math.random()*((w-((dmin+2*0.34*(no))/2)) - ((dmin+2*0.34*(no))/2) )) + ((dmin+2*0.34*(no))/2),
+                    y: (Math.random()*((t-((dmin+2*0.34*(no))/2)) - ((dmin+2*0.34*(no))/2) )) + ((dmin+2*0.34*(no))/2),
+                    r: 0.1
+                }
+                var overlapping = false;
+
+                for(var i=0; i < circles.length; i++){
+                    for(var j=0;j<circles[i].length;j++){
+                        var other = circles[i][j];
+                        var d1 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                        if(d1 < circle.r + other.r +  0.34){
+                             overlapping = true;
+                             i=circle.length;
+                             break;
+                        }
+                    }
+                }
+                
+                for(var i=0; i < circles2.length; i++){
+                    var other = circles2[i];
+                    var d1 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                    if(d1 < circle.r + other.r + 0.34){
+                        overlapping = true;
+                        break;
+                    }
+                }
+                for(var i=0; i < circles3.length; i++){
+                    var other = circles3[i];
+                    var d1 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                    if(d1 < circle.r + other.r + 0.34){
+                        overlapping = true;
+                        break;
+                    }
+                }
+                protection++;
+                if(overlapping==false){
+                    circles2.push(circle);
+                }
+            }
+            for (var i = 0; i < circles3.length; i++) {
+                ctx.beginPath();
+                ctx.arc(circles3[i].x * 20, circles3[i].y * 20, 0.1 * 10, 0, 2 * Math.PI, true);
+                ctx.stroke();
+            }
+
+
+
+        var density_sum=0;
+        for(var i=0; i < circles.length ; i++){
+                for (var j = 0; j < circles[i].length; j++) {
+                    density_sum += (22*(circles[i][j].r*circles[i][j].r))/7;
+                }
+            }
+        for (var j = 0; j < circles2.length; j++) {
+            density_sum += (22*(circles2[j].r*circles2[j].r))/7;
+        }    
+        var density = density_sum/(w*t);
+        console.log("Density = ",density*100,"%");
         console.log(...circles);
         
-
+        Nx = Nw/2;
         
         
         
