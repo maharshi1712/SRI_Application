@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result of Mixed CNT</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .table-content {
+            margin: 0 auto;
+        }
+        
+        .contain {
+            display: grid;
+            grid-template-areas: "head head" "table canvas" "equation equation" "number res" "ind capc";
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        
+        .head {
+            grid-area: head;
+            text-align: center;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+            border-bottom: 1px solid grey;
+        }
+        
+        .table-content {
+            margin-top: 100px;
+            grid-area: table;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: azure;
+        }
+        
+        .mycanva {
+            grid-area: canvas;
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .equation-head {
+            grid-area: equation;
+            height: 100px;
+            margin-top: 50px;
+            border: 0.5px solid;
+            padding-top: 10px;
+        }
+        
+        .equation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        
+        .numberOfSWCNT {
+            grid-area: number;
+            border: 0.5px solid;
+            display: flex;
+        }
+        
+        .resOfSWCNT {
+            grid-area: res;
+            border: 0.5px solid;
+        }
+        
+        .indOfSWCNT {
+            grid-area: ind;
+            border: 0.5px solid;
+        }
+        
+        .capcOfSWCNT {
+            grid-area: capc;
+            border: 0.5px solid;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .contain {
+                grid-template-areas: "head" "table" "canvas" "equation" "number" "res" "ind" "capc";
+            }
+            .equation {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body style="width: 100%;">
+    <div class="contain">
+        <div class="head" text-align:center ">
+            <h1 class="text-4xl ">Mixed Carbon Nanotube Bundle Interconnect</h1>
+        </div>
+        <div class="table-content ">
+            <table class="min-w-full divide-y divide-gray-200 ">
+                <thead class="bg-gray-50 ">
+                    <tr>
+                        <th scope="col " class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                            Properties
+                        </th>
+                        <th scope="col " class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
+                            Values
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class=" divide-y divide-gray-200 ">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Width (W)
+                        </td>
+                        <td id="w " class="px-6 py-4 whitespace-nowrap ">
+                            10mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Height (t)
+                        </td>
+                        <td id="t " class="px-6 py-4 whitespace-nowrap ">
+                            10mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Diameter (d)
+                        </td>
+                        <td id="d " class="px-6 py-4 whitespace-nowrap ">
+                            12mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of SWCNTs in MWCNTs (n)
+                        </td>
+                        <td id="n " class="px-6 py-4 whitespace-nowrap ">
+                            20mm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Height abov ground (Hg)
+                        </td>
+                        <td id="hg " class="px-6 py-4 whitespace-nowrap ">
+                            20
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Diameter(min) of MWCNT (Dmin)
+                        </td>
+                        <td id="dmin " class="px-6 py-4 whitespace-nowrap ">
+                            20
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Number of CNT (Ncnt)
+                        </td>
+                        <td id="ncnt " class="px-6 py-4 whitespace-nowrap ">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Register of lump (Rlump)
+                        </td>
+                        <td id="register1 " class="px-6 py-4 whitespace-nowrap ">
+                            2 Ohm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Register of Equivalent Single Conductor (Resc)
+                        </td>
+                        <td id="register2 " class="px-6 py-4 whitespace-nowrap ">
+                            2 Ohm
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Kinetic Inducatance of CNT (Lk)
+                        </td>
+                        <td id="inductanceK " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Magnetic Inductance of CNT (Lm)
+                        </td>
+                        <td id="inductanceM " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Total ESC Inductance (L)
+                        </td>
+                        <td id="inductanceT " class="px-6 py-4 whitespace-nowrap ">
+                            20 L
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Electrostatic Capacitance (Ce)
+                        </td>
+                        <td id="capacitanceQ " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Quantum Capacitance (Cq)
+                        </td>
+                        <td id="capacitanceE " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap ">
+                            Capacitance (C)
+                        </td>
+                        <td id="capacitanceT " class="px-6 py-4 whitespace-nowrap ">
+                            200 C
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mycanva ">
+            <h3 class="row " style="margin-bottom: 50px; ">Structure of Mixed CNT :</h3>
+            <canvas id="myCanvas " style="border: 1.5px solid rgb(63, 63, 63); text-align: center; ">
+                Your browser does not support the canvas element.
+            </canvas>
+            
+        </div>
+        <div class="equation-head " style="text-align:center; ">
+            <h1>Equations</h1>
+            <p>Open in Desktop for better quality</p>
+        </div>
+        <div class="equation numberOfSWCNT ">
+            <div>
+                <h3>Number of Mixed CNT : </h3>
+            </div>
+            <div>
+                 <img src="../assets/img/numberMXCNT.gif " alt=" ">
+            </div>
+            
+           
+        </div>
+        <div class="equation resOfSWCNT ">
+            <h3>Resistance : </h3>
+            <img src="../assets/img/resMXCNT.gif " alt=" ">
+        </div>
+        <div class="equation indOfSWCNT ">
+            <h3>Inducatance : </h3>
+            <img src="../assets/img/induMXCNT.gif " alt=" ">
+        </div>
+        <div class="equation capcOfSWCNT ">
+            <h3>Capacitance : </h3>
+            <img src="../assets/img/capcMXCNT.gif " alt=" ">
+        </div>
+    </div>
+
+    <script>
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var w = Number(url.searchParams.get("w"));
+        var t = Number(url.searchParams.get("t"));
+        var d = Number(url.searchParams.get("d"));
+        var dmin = Number(url.searchParams.get("dmin"));
+        var no = Number(url.searchParams.get("n"));
+        var hg = Number(url.searchParams.get("hg"));
+        var str = String(url.searchParams.get("str"));
+        document.getElementById("w ").innerHTML = w;
+        document.getElementById("t ").innerHTML = t;
+        document.getElementById("d ").innerHTML = d;
+        document.getElementById("n ").innerHTML = no;
+        document.getElementById("hg ").innerHTML = hg;
+        document.getElementById("dmin ").innerHTML = dmin;
+
+        //Ncnt......................................................................................
+        var Ncnt;
+        var Nw = Math.floor((w-dmin)/(dmin+0.34))+1;
+        var Nh = Math.floor((t-dmin)/((Math.sqrt(3)/2)*(dmin+0.34)))+1;
+        
+        if(Nh%2 == 0){
+            Ncnt = Nw*Nh-(Nh/2);
+        }else{
+            Ncnt = Nw*Nh-((Nh-1)/2);
+        }
+        document.getElementById("ncnt ").innerHTML = Ncnt;
+        console.log("Nw=",Nw," Nh=",Nh," Ncnt=",Ncnt);
+
+        var dmax = dmin + 2*0.34*(no-1);
+        var Nshell = 1 + Math.floor((dmax-(dmin/2))/(2*0.34));
+        console.log("dmax=",dmax," Nshell=",Nshell);
+
+
+
+        //canvas...............................................................................
+
+        var circles = [[],[],[],[],[],[],[],[],[]];
+       
+        var d_MWCNT = [];
+        var temp1 = 0.7;
+        for(var i=2;i<=10;i++){
+            d_MWCNT[i-2] = temp1/2;
+            temp1 = temp1 + 0.34;  
+        }
+        var n_MWCNT = d_MWCNT.length;
+        for(var i=n_MWCNT-1; i>=0; i--){
+            packing(d_MWCNT[i], i);
+        }
+
+        function packing(r,idx){
+            var protection = 0;
+            while(protection < 5000000){
+                var circle = {
+                    x: (Math.random()*((w-(((r)+2*0.34*(idx+2))/2)) - (((r)+2*0.34*(idx+2))/2) )) + (((r)+2*0.34*(idx+2))/2),
+                    y: (Math.random()*((t-(((r)+2*0.34*(idx+2))/2)) - (((r)+2*0.34*(idx+2))/2) )) + (((r)+2*0.34*(idx+2))/2),
+                    r: r+(3*r/4)
+                }
+                var overlapping = false;
+                for(var i=0; i < circles.length; i++){
+                    for(var j=0;j<circles[i].length;j++){
+                        var other = circles[i][j];
+                        var d1 = Math.sqrt(((circle.x-other.x)*(circle.x-other.x))+((circle.y-other.y)*(circle.y-other.y)));
+                        if(d1 < circle.r + other.r + 0.34){
+                             overlapping = true;
+                             i=circle.length;
+                             break;
+                        }
+                    }
+                }
+                protection++;
+                if(overlapping==false){
+                    circles[idx].push(circle);
+                }
+            }
+        }
+
+        var canvas = document.getElementById("myCanvas ");
+            canvas.setAttribute("width", w * 20);
+            canvas.setAttribute("height", t * 20);
+            var ctx = canvas.getContext("2d");
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+
+            for(var k=0; k < circles.length ; k++){
+                for (var i = 0; i < circles[k].length; i++) {
+                    for (var j = 1; j < k+2; j++) {
+                        var m = (0.7 + 2 * 0.34 * (j - 1)) / 2;
+                        ctx.beginPath();
+                        ctx.arc(circles[k][i].x * 20, circles[k][i].y * 20, m * 20, 0, 2 * Math.PI);
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+
+        console.log(...circles);
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //Nchannels............................................................................
+       var Nch=0;
+        for(var i=0;i<Nshell;i++){
+            var p = 1300/300;
+            var Di = dmax-2*0.34*(i-1);
+            if(Di>p){
+                Nch=Nch+(0.1161*Di)+0.2;
+            }else{
+                Nch=Nch+(2/3);
+            } 
+        }
+        var Ntotal = Ncnt*Nch;
+        //Resistance...........................................................................
+        var resistance1,resistance2,res1=0,res2=0;
+        var Rq = 6450;
+        var Rmc = 3500;
+        for(var i=1; i<=Nshell; i++){
+            var Nchi;
+            var p = 1300/300;
+            var Di = dmax-2*0.34*(i-1);
+            if(Di>p){
+                Nchi=(0.1161*Di)+0.2;
+            }else{
+                Nchi=(2/3);
+            } 
+            res1 = res1 + 1/((Rq/(Nchi))+Rmc);
+        }
+        resistance1 = Ncnt*(1/(res1*1000));
+        console.log(resistance1);
+        document.getElementById("register1 ").innerHTML = (resistance1/1000).toFixed(3)+" K\u2126 ";
+
+        for(var i=1; i<=Nshell; i++){
+            var Nchi;
+            var p = 1300/300;
+            var Di = dmax-2*0.34*(i-1);
+            if(Di>p){
+                Nchi=(0.1161*Di)+0.2;
+            }else{
+                Nchi=(2/3);
+            } 
+            var di = dmax - 2*0.34*(i-1);
+            res2 = res2 + (Nchi*1000*di)/Rq;
+        }
+        resistance2 = Ncnt*(1/res2);
+        console.log(resistance2);
+        document.getElementById("register2 ").innerHTML = (resistance2/1000).toFixed(3)+" K\u2126 ";
+
+        //Capacitance............................................................................
+        var Cq,Cqo=9.5*Math.pow(10,-11);
+        Cq = 2*Cqo*Ntotal;
+        console.log(Cq);
+        document.getElementById("capacitanceQ ").innerHTML = (Cq)+" F ";
+
+        var Ce = (2*3.14*2.2*8.85*Math.pow(10,-12)*Nx)/Math.acosh((dmax+(2*hg))/dmax);
+        console.log(Ce);
+        document.getElementById("capacitanceE ").innerHTML = Ce+" F ";
+
+        var C = (Cq*Ce)/(Cq+Ce);
+        document.getElementById("capacitanceT ").innerHTML = C+" F ";
+
+        //Inductance................................................................................
+        var e = 1.6*Math.pow(10, -19)
+        var Lk0 = 6.626*Math.pow(10, -34)/(2*e*e*8*Math.pow(10,5));
+        var Lk = Lk0/(2*Ntotal);
+        document.getElementById("inductanceK ").innerHTML = Lk+" H ";
+
+        var Lm = (2/Nx)*Math.pow(10,-7)*Math.log((dmax+(2*hg))/dmax);
+        document.getElementById("inductanceM ").innerHTML = Lm+" H ";
+
+        var L = Lk + Lm;
+        document.getElementById("inductanceT ").innerHTML = L+" H ";
+
+    </script>
+</body>
+
+</html>
